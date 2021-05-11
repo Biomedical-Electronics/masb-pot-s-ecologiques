@@ -1,0 +1,85 @@
+!SESSION 2021-05-11 13:54:39.949 -----------------------------------------------
+eclipse.buildId=Version 1.5.1
+java.version=1.8.0_272
+java.vendor=AdoptOpenJDK
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=es_ES
+Command-line arguments:  -os win32 -ws win32 -arch x86_64
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 4 4 2021-05-11 13:55:03.716
+!MESSAGE CubeMX plugin appears to be active, Log4j initialization might be too late.
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 1 1 2021-05-11 13:55:03.787
+!MESSAGE Log4j initialized with config file C:\Users\ayram\Desktop\MICRO\projecte\masb-pot-s-ecologiques\masb-pot-s-ecologiques\.metadata\.log4j.xml
+
+!ENTRY com.st.stm32cube.ide.mcu.ide 1 1 2021-05-11 13:55:06.933
+!MESSAGE Started RMI Server, listening on port 41337
+
+!ENTRY com.st.stm32cube.ide.mcu.ide 4 4 2021-05-11 13:55:08.661
+!MESSAGE com.st.stm32cube.ide.mcu.ide/META-INF/version/build_ref file not found, build reference will not be reported into properties
+
+!ENTRY org.eclipse.core.jobs 4 2 2021-05-11 13:55:29.850
+!MESSAGE An internal error occurred during: "Update Job".
+!STACK 0
+java.lang.NullPointerException
+	at org.eclipse.equinox.internal.p2.ui.sdk.scheduler.migration.MigrationSupport.getLastMigration(MigrationSupport.java:260)
+	at org.eclipse.equinox.internal.p2.ui.sdk.scheduler.migration.MigrationSupport.baseChangedSinceLastPresentationOfWizard(MigrationSupport.java:216)
+	at org.eclipse.equinox.internal.p2.ui.sdk.scheduler.migration.MigrationSupport.performMigration(MigrationSupport.java:82)
+	at org.eclipse.equinox.internal.p2.ui.sdk.scheduler.AutomaticUpdateScheduler.lambda$0(AutomaticUpdateScheduler.java:68)
+	at org.eclipse.core.runtime.jobs.Job$2.run(Job.java:185)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+!SESSION 2021-05-11 13:55:30.150 -----------------------------------------------
+eclipse.buildId=Version 1.5.1
+java.version=1.8.0_272
+java.vendor=AdoptOpenJDK
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=es_ES
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -data C:\Users\ayram\Desktop\MICRO\projecte\masb-pot-s-ecologiques\masb-pot-s-ecologiques
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 4 4 2021-05-11 13:55:36.972
+!MESSAGE CubeMX plugin appears to be active, Log4j initialization might be too late.
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 1 1 2021-05-11 13:55:37.039
+!MESSAGE Log4j initialized with config file C:\Users\ayram\Desktop\MICRO\projecte\masb-pot-s-ecologiques\masb-pot-s-ecologiques\.metadata\.log4j.xml
+
+!ENTRY com.st.stm32cube.ide.mcu.ide 1 1 2021-05-11 13:55:41.650
+!MESSAGE Started RMI Server, listening on port 41337
+
+!ENTRY com.st.stm32cube.ide.mcu.ide 4 4 2021-05-11 13:55:43.504
+!MESSAGE com.st.stm32cube.ide.mcu.ide/META-INF/version/build_ref file not found, build reference will not be reported into properties
+!SESSION 2021-05-11 13:59:41.235 -----------------------------------------------
+eclipse.buildId=Version 1.5.1
+java.version=1.8.0_272
+java.vendor=AdoptOpenJDK
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=es_ES
+Framework arguments:  C:\Users\ayram\Desktop\MICRO\projecte\masb-pot-s-ecologiques\masb-pot-s-ecologiques\.project
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 C:\Users\ayram\Desktop\MICRO\projecte\masb-pot-s-ecologiques\masb-pot-s-ecologiques\.project
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 4 4 2021-05-11 13:59:50.800
+!MESSAGE CubeMX plugin appears to be active, Log4j initialization might be too late.
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 1 1 2021-05-11 13:59:50.866
+!MESSAGE Log4j initialized with config file C:\Users\ayram\Desktop\MICRO\projecte\masb-pot-s-ecologiques\masb-pot-s-ecologiques\.metadata\.log4j.xml
+
+!ENTRY com.st.stm32cube.ide.mcu.ide 1 1 2021-05-11 13:59:55.682
+!MESSAGE Started RMI Server, listening on port 41337
+
+!ENTRY com.st.stm32cube.ide.mcu.ide 4 4 2021-05-11 14:00:04.352
+!MESSAGE com.st.stm32cube.ide.mcu.ide/META-INF/version/build_ref file not found, build reference will not be reported into properties
+!SESSION 2021-05-11 14:01:36.628 -----------------------------------------------
+eclipse.buildId=Version 1.5.1
+java.version=1.8.0_272
+java.vendor=AdoptOpenJDK
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=es_ES
+Framework arguments:  C:\Users\ayram\Desktop\MICRO\projecte\masb-pot-s-ecologiques\masb-pot-s-ecologiques\.project
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -data C:\Users\ayram\Desktop\MICRO\projecte\masb-pot-s-ecologiques\masb-pot-s-ecologiques C:\Users\ayram\Desktop\MICRO\projecte\masb-pot-s-ecologiques\masb-pot-s-ecologiques\.project
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 4 4 2021-05-11 14:01:43.332
+!MESSAGE CubeMX plugin appears to be active, Log4j initialization might be too late.
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 1 1 2021-05-11 14:01:43.393
+!MESSAGE Log4j initialized with config file C:\Users\ayram\Desktop\MICRO\projecte\masb-pot-s-ecologiques\masb-pot-s-ecologiques\.metadata\.log4j.xml
+
+!ENTRY com.st.stm32cube.ide.mcu.ide 1 1 2021-05-11 14:01:48.191
+!MESSAGE Started RMI Server, listening on port 41337
+
+!ENTRY com.st.stm32cube.ide.mcu.ide 4 4 2021-05-11 14:01:51.545
+!MESSAGE com.st.stm32cube.ide.mcu.ide/META-INF/version/build_ref file not found, build reference will not be reported into properties
