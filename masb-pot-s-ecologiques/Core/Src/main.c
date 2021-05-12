@@ -98,6 +98,8 @@ int main(void)
   MX_I2C1_Init();
   /* USER CODE BEGIN 2 */
 
+  HAL_GPIO_WritePin(EN_GPIO_Port, EN_Pin, 1); // habilitamos desde un principio la PMU
+
   /* USER CODE END 2 */
 
   /* Infinite loop */
