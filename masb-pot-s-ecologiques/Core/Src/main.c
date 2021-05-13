@@ -19,6 +19,7 @@
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
+#include "components/stm32main.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
@@ -96,7 +97,11 @@ int main(void)
   /* USER CODE BEGIN 2 */
 
   HAL_GPIO_WritePin(EN_GPIO_Port, EN_Pin, 1); // habilitamos desde un principio la PMU
-  HAL_TIM_Base_Start_IT(&htim3);
+
+  struct Handles_S myhandles;
+  myHandles.huart = &huart2;
+
+  setup(&myHandles);
 
   /* USER CODE END 2 */
 
