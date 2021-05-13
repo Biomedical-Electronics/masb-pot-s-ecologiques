@@ -7,9 +7,22 @@
 
 #include "components/stm32main.h"
 #include "components/masb_comm_s.h"
+#include "chronoamperometry.h"
+#include "cyclic_voltammetry.h"
 
 struct CV_Configuration_S cvConfiguration;
+struct CA_Configuration_S caConfiguration;
 struct Data_S data;
+
+static TIM_HandleTypeDef *timer;
+
+void CA_setTimer(TIM_HandleTypeDef *new_Timer) {
+	timer = new_timer;
+}
+
+void CV_setTimer(TIM_HandleType *new_Timer) {
+	timer = new_timer;
+}
 
 void setup(struct Handles_S *handles) {
     MASB_COMM_S_setUart(handles->huart);
