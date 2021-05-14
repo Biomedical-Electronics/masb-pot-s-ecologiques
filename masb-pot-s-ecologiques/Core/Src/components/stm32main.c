@@ -30,6 +30,7 @@ void loop(void) {
 
  				__NOP(); // Esta instruccion no hace nada y solo sirve para poder anadir un breakpoint
 
+
  				// Aqui iria todo el codigo de gestion de la medicion que hareis en el proyecto
                 // si no quereis implementar el comando de stop.
 
