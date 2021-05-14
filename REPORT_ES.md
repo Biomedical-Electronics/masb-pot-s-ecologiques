@@ -4,13 +4,9 @@
 
 ## Introducción
 
-¿En qué consiste el proyecto?
+Éste proyecto consiste en la programación de un potenciostato formado por un *front-end* previamente diseñado por Albert Álvarez, y un *back-end* basado en la *Evaluation Board* (EVB) NUCLEO-F401RE de STMicroelectronics. 
 
-El proyecto presentado consiste en la programación de un potenciostato. 
-
-¿Qué es un potenciostato?
-
-¿Cuáles son los objetivos del trabajo?
+Un potenciostato es un dispositivo electrónico necesario para controlar una celda de tres electrodos para un experimento electroanalítico. El sistema funciona manteniendo el potencial del electrodo de trabajo a un nivel constante con respecto al potencial del electrodo de referencia mediante el ajuste de la corriente en un electrodo auxiliar. Esto significa que es el responsable de polarizar la celda electroquímica a una tensión VCELL y la tensión ICELL que circula por ella. Para establecer VCELL, se va a utilizar la DAC modelo MCP4725 con dirección I2C `1100000`, pues permite generar una tensión de salida de 0 a 4V.
 
 ¿En qué consisten las medidas electroquímicas que hay que hacer? ¿Para qué sirven?
 
