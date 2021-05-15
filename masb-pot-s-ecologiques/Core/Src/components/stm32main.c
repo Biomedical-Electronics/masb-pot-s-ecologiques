@@ -14,6 +14,9 @@ struct Data_S data;
 void setup(struct Handles_S *handles) {
     MASB_COMM_S_setUart(handles->huart);
     MASB_COMM_S_waitForMessage();
+
+    HAL_GPIO_WritePin(EN_GPIO_Port, EN_Pin, 1); // habilitamos desde un principio la PMU
+
 }
 
 void loop(void) {
