@@ -11,12 +11,28 @@
 struct CV_Configuration_S cvConfiguration;
 struct Data_S data;
 
+uint32_t V_ADC = 0; // no hace falta que sea global, es local
+float V_CELL = 0;
+float I_CELL = 0;
+float V_DAC = 0;
+const float R_TIA = 10000; // constante porque el valor de la resistencia no varía
+
 void setup(struct Handles_S *handles) {
     MASB_COMM_S_setUart(handles->huart);
     MASB_COMM_S_waitForMessage();
 }
 
 void loop(void) {
+	HAL_ADC_Start(&hadc1);
+	HAL_ADC_PollForConversion(&hadc1, 200);
+
+	V_ADC = HAL_ADC_GetValue(&hadc1);
+
+	V_CELL = (1.65 - V_ADC)*2; // la fórmula que sabemos que se corresponde
+	I_CELL = V_CELL/R_TIA; // la fórmula para obtener I_CELL
+
+	V_DAC = 1.65 - (V_CELL/2);
+
     if (MASB_COMM_S_dataReceived()) { // Si se ha recibido un mensaje...
 
  		switch(MASB_COMM_S_command()) { // Miramos que comando hemos recibido
