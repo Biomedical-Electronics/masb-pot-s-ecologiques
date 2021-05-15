@@ -96,8 +96,6 @@ int main(void)
   MX_TIM3_Init();
   /* USER CODE BEGIN 2 */
 
-  HAL_GPIO_WritePin(EN_GPIO_Port, EN_Pin, 1); // habilitamos desde un principio la PMU
-
   struct Handles_S myhandles;
   myHandles.huart = &huart2;
 
