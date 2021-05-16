@@ -13,6 +13,7 @@
 #define INC_COMPONENTS_MASB_COMM_S_H_
 
 #include "stm32f4xx_hal.h"
+#include "cobs.h"
 #include "components/cyclic_voltammetry.h"
 #include "components/chronoamperometry.h"
 
@@ -24,7 +25,7 @@
 #define STOP_MEAS			0x03
 
 #ifndef TRUE
-    #define TRUE				1
+#define TRUE				1
 #endif
 
 #ifndef FALSE

@@ -8,3 +8,4 @@
   */
 
 #include "components/chronoamperometry.h"
+#include "components/stm32main.h"
