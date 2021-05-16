@@ -12,6 +12,9 @@
 
  struct Handles_S {
      UART_HandleTypeDef *huart;
+	 ADC_HandleTypeDef *hadc1;
+	 I2C_HandleTypeDef *hi2c1;
+	 TIM_HandleTypeDef *htim3;
      // Aqui iriamos anadiendo los diferentes XXX_HandleTypeDef que necesitaramos anadir.
  };
 
