@@ -39,14 +39,22 @@ void loop(void) {
 
  				caConfiguration = MASB_COMM_S_getCaConfiguration():
 
-				HAL_GPIO_WritePin(RELAY_GPIO_Port, RELAY_Pin, 0);  //cerramos relé
+				HAL_GPIO_WritePin(RELAY_GPIO_Port, RELAY_Pin, 1);  //cerramos relé
 
  				V_CELL = caConfiguration.eDC; // fijamos la tensión de la celda electroquímica a eDC
 
-				HAL_TIM_Base_Start_IT(&htim3);  //se inicia timer
+				//HAL_TIM_Base_Start_IT(&htim3);  //se inicia timer
 
-				//falta bucle
+				// Se supone que detenemos el timer justo al finalizar la medicion anterior. Por
+				// eso esta comentada.
+				// HAL_TIM_Base_Stop_IT(&htim3);
 
+				__HAL_TIM_SET_AUTORELOAD(&htim3, samplingPeriodMs * 10); // Fijamos el periodo.
+				// El mutliplicar el samplingPeriodMs por 10 para fijar el periodo solo es valido
+				// si se fija una frecuencia de trabajo para el timer de 10 kHz.
+
+				__HAL_TIM_SET_COUNTER(&htim3, 0); // Reiniciamos el contador del timer a 0.
+				HAL_TIM_Base_Start_IT(&htim3); // Iniciamos el timer.
  				__NOP();
 
  				break;
@@ -76,4 +84,17 @@ void loop(void) {
  	}
 
 
+}
+
+
+void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim3) {
+
+	//contador con measuring time
+	//if true mesuramos
+	V_CELL=(1.65 - V_ADC)*2
+	I_CELL=((V_ADC - 1.65))
+	//enviamos host
+
+	//abrimos relé
+	HAL_GPIO_WritePin(RELAY_GPIO_Port, RELAY_Pin, 0);
 }
