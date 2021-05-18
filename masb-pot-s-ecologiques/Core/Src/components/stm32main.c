@@ -6,6 +6,9 @@
  */
 
 #include "components/stm32main.h"
+#include "components/i2c_lib.h"
+#include "components/ad5280_driver.h"
+#include "main.h"
 #include "components/masb_comm_s.h"
 
 struct CV_Configuration_S cvConfiguration;
@@ -13,8 +16,14 @@ struct CA_Configuration_S caConfiguration;
 struct Data_S data;
 
 void setup(struct Handles_S *handles) {
-    MASB_COMM_S_setUart(handles->huart);
-    MASB_COMM_S_waitForMessage();
+	HAL_GPIO_Write_Oin(EN_GPIO_Port, EN_Pin,GPIO_PIN_RESET);
+
+	AD5280_Handle_T hpot = NULL;
+	hpot = AD5280_Init();
+
+	AD5280_ConfigSlaveAddress(hpot, 0x2C);
+	AD5280_ConfigNominalResistorValue(hpot, 50e3f);
+	AD5280_ConfigWriteFunction(hpot, I2C_Write);
 }
 
 void loop(void) {
@@ -31,30 +40,14 @@ void loop(void) {
 
  				__NOP(); // Esta instruccion no hace nada y solo sirve para poder anadir un breakpoint
 
- 				// Aqui iria todo el codigo de gestion de la medicion que hareis en el proyecto
+ 				// Aqui iria tod el codigo de gestion de la medicion que hareis en el proyecto
                 // si no quereis implementar el comando de stop.
 
  				break;
  			case START_CA_MEAS:
 
- 				caConfiguration = MASB_COMM_S_getCaConfiguration():
+ 				caConfiguration = MASB_COMM_S_getCaConfiguration();
 
-				HAL_GPIO_WritePin(RELAY_GPIO_Port, RELAY_Pin, 1);  //cerramos relé
-
- 				V_CELL = caConfiguration.eDC; // fijamos la tensión de la celda electroquímica a eDC
-
-				//HAL_TIM_Base_Start_IT(&htim3);  //se inicia timer
-
-				// Se supone que detenemos el timer justo al finalizar la medicion anterior. Por
-				// eso esta comentada.
-				// HAL_TIM_Base_Stop_IT(&htim3);
-
-				__HAL_TIM_SET_AUTORELOAD(&htim3, samplingPeriodMs * 10); // Fijamos el periodo.
-				// El mutliplicar el samplingPeriodMs por 10 para fijar el periodo solo es valido
-				// si se fija una frecuencia de trabajo para el timer de 10 kHz.
-
-				__HAL_TIM_SET_COUNTER(&htim3, 0); // Reiniciamos el contador del timer a 0.
-				HAL_TIM_Base_Start_IT(&htim3); // Iniciamos el timer.
  				__NOP();
 
  				break;
@@ -87,14 +80,3 @@ void loop(void) {
 }
 
 
-void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim3) {
-
-	//contador con measuring time
-	//if true mesuramos
-	V_CELL=(1.65 - V_ADC)*2
-	I_CELL=((V_ADC - 1.65))
-	//enviamos host
-
-	//abrimos relé
-	HAL_GPIO_WritePin(RELAY_GPIO_Port, RELAY_Pin, 0);
-}
