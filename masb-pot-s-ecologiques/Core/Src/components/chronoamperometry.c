@@ -46,7 +46,7 @@ void Mesurant_Crono(struct CA_Configuration_S caConfiguration) {
 
 	uint32_t counter = 0;
 	uint32_t repeticio = 0;
-
+	uint32_t V_ADC = 0;
 	HAL_ADC_Start(&hadc1);
 
 	double V_CELL = HAL_ADC_GetValue(&hadc1);
