@@ -769,3 +769,25 @@ Command-line arguments:  -os win32 -ws win32 -arch x86_64 C:\Users\helen\Desktop
 
 !ENTRY org.eclipse.cdt.core 1 0 2021-05-18 21:31:58.693
 !MESSAGE Indexed 'masb-pot-s-ecologiques' (34 sources, 116 headers) in 4,58 sec: 9.890 declarations; 43.843 references; 2 unresolved inclusions; 43 syntax errors; 272 unresolved names (0,5 %)
+!SESSION 2021-05-19 19:18:01.880 -----------------------------------------------
+eclipse.buildId=Version 1.5.1
+java.version=1.8.0_272
+java.vendor=AdoptOpenJDK
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=es_ES
+Framework arguments:  C:\Users\helen\Desktop\Practiques_MASB\masb-pot-s-ecologiques\masb-pot-s-ecologiques\.project
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 C:\Users\helen\Desktop\Practiques_MASB\masb-pot-s-ecologiques\masb-pot-s-ecologiques\.project
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 4 4 2021-05-19 19:18:17.952
+!MESSAGE CubeMX plugin appears to be active, Log4j initialization might be too late.
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 1 1 2021-05-19 19:18:18.163
+!MESSAGE Log4j initialized with config file C:\Users\helen\Desktop\Practiques_MASB\masb-pot-s-ecologiques\.metadata\.log4j.xml
+
+!ENTRY com.st.stm32cube.ide.mcu.ide 1 1 2021-05-19 19:18:28.839
+!MESSAGE Started RMI Server, listening on port 41337
+
+!ENTRY com.st.stm32cube.ide.mcu.ide 4 4 2021-05-19 19:18:30.102
+!MESSAGE com.st.stm32cube.ide.mcu.ide/META-INF/version/build_ref file not found, build reference will not be reported into properties
+
+!ENTRY org.eclipse.cdt.core 1 0 2021-05-19 19:18:34.583
+!MESSAGE Indexed 'masb-pot-s-ecologiques' (34 sources, 116 headers) in 4,92 sec: 10.470 declarations; 54.009 references; 2 unresolved inclusions; 43 syntax errors; 150 unresolved names (0,23 %)

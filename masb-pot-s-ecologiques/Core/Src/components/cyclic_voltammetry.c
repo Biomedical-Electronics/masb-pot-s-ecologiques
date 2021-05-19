@@ -39,7 +39,7 @@ void Mesurant_CV(struct CV_Configuration_S cvConfiguration) {
 	double vObjetivo = cvConfiguration.eVertex1; // establecemos como voltaje objetivo el del vértice 1
 	double V_DAC = (1.65 - (V_CELL_pre / 2.0));
 
-	MCP4725_SetOutputVoltage(hdac, V_DAC); // comentar para probar
+	//MCP4725_SetOutputVoltage(hdac, V_DAC); // comentar para probar
 
 	HAL_GPIO_WritePin(RELAY_GPIO_Port, RELAY_Pin, 1); // cerramos el relé
 
@@ -123,8 +123,10 @@ void Mesurant_CV(struct CV_Configuration_S cvConfiguration) {
 	counter = counter + 1;
 	V_CELL = V_CELL + cvConfiguration.eStep;
 }
+	HAL_TIM_Base_Stop_IT(&htim3);
 }
-HAL_TIM_Base_Stop_IT(&htim3);
+
+
 
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim3) {
 	mesura_punt = TRUE;
