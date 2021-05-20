@@ -104,10 +104,10 @@ int main(void)
 
   HAL_GPIO_WritePin(EN_GPIO_Port, EN_Pin, 1); // habilitamos desde un principio la PMU
 
-  struct Handles_S myhandles;
-  myhandles.huart = &huart2;
+  //struct Handles_S myHandles;
+  //myHandles.huart = &huart2;
 
-  setup(&myhandles);
+  //setup(&myHandles);
 
   /* USER CODE END 2 */
 

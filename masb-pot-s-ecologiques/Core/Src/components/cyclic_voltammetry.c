@@ -32,7 +32,10 @@ double R_TIA = 10000;
 
 // definimos el sampling period con la fórmula dada
 void Mesurant_CV(struct CV_Configuration_S cvConfiguration) {
+	uint8_t cycles = cvConfiguration.cycles;
 	uint32_t samp_period = cvConfiguration.eStep/cvConfiguration.scanRate;
+	int cambio = 1;
+
 
 	double V_CELL_pre = cvConfiguration.eBegin; // fijamos la tensión de la celda electroquímica a eBegin
 
@@ -51,7 +54,7 @@ void Mesurant_CV(struct CV_Configuration_S cvConfiguration) {
 	HAL_TIM_Base_Start_IT(&htim3); // inicializamos el timer
 
 
-	uint32_t counter = 0; // y el contador
+	uint32_t counter = 1; // y el contador
 	uint32_t repeticio = 0;
 	uint32_t V_ADC = 0;
 	HAL_ADC_Start(&hadc1);
@@ -71,7 +74,7 @@ void Mesurant_CV(struct CV_Configuration_S cvConfiguration) {
 
 	MASB_COMM_S_sendData(data);
 
-	while (repeticio <= cvConfiguration.cycles) { // mientras el contador sea más pequeño que el número de ciclos
+	while (counter <= cycles) { // mientras el contador sea más pequeño que el número de ciclos
 		if (mesura_punt == TRUE){ // si ha pasado el sampling period
 
 			// medimos V_cell e I_cell
@@ -95,27 +98,29 @@ void Mesurant_CV(struct CV_Configuration_S cvConfiguration) {
 			if (V_CELL == cvConfiguration.eVertex1){
 
 				vObjetivo = cvConfiguration.eVertex2; // hacemos que el objetivo sea el otro extremo
+				cambio = -1;
 
-			} else { // si es falso
-
-				if (vObjetivo == cvConfiguration.eVertex2) { // y vObjetivo es el otro extremo
+			} else if (V_CELL == cvConfiguration.eVertex2) { // si es falso
 
 					vObjetivo = cvConfiguration.eBegin; // fijamos el valor de vObjetivo
+					cambio = 1;
 
-				} else {
-
-					if (counter == cvConfiguration.cycles){
-						HAL_GPIO_WritePin(RELAY_GPIO_Port, RELAY_Pin, 0);
-					}else{
-						vObjetivo = cvConfiguration.eVertex1;
+			} else if (counter == cycles){
+					HAL_GPIO_WritePin(RELAY_GPIO_Port, RELAY_Pin, 0);
 					}
+			else{
+					vObjetivo = cvConfiguration.eVertex1;
+					cambio = 1;
+
 				}
 			}
-		} else {
-			if (V_CELL + cvConfiguration.eStep > vObjetivo) {
-				break;
-			} else {
 
+		else {
+			if (V_CELL + cambio*(cvConfiguration.eStep) > vObjetivo) {
+				MASB_COMM_S_sendData(data);
+			} else {
+				V_CELL = V_CELL +(cvConfiguration.eStep*cambio);
+				MASB_COMM_S_sendData(data);
 			}
 		}
 	}
@@ -124,6 +129,8 @@ void Mesurant_CV(struct CV_Configuration_S cvConfiguration) {
 	V_CELL = V_CELL + cvConfiguration.eStep;
 }
 	HAL_TIM_Base_Stop_IT(&htim3);
+	HAL_GPIO_WritePin(RELAY_GPIO_Port, RELAY_Pin, 0); // cerramos el relé
+
 }
 
 
