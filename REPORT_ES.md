@@ -72,7 +72,17 @@ El microcontrolador se va a programar mediante el software STM32CubeIDE usando c
 
 ### Workflow implementado
 
-Éste proyecto se ha implementado mediante el uso de ramas individuales (siguiendo el formato feature/nombre-descriptivo-rama) que posteriormente se han agrupado en la rama develop. Una vez se han comprovado y arreglado errores, se han pasado los archivos a la rama master para la visualización del cliente.
+Este proyecto se ha implementado mediante el uso de dos ramas individuales (siguiendo el formato feature/nombre-descriptivo-rama) que posteriormente se han agrupado en la rama develop. Una vez se han comprobado y arreglado errores, se han pasado los archivos a la rama master para la visualización del cliente.
+
+Las dos ramas creadas son `feature/chronoamperomety` y `feature/cyclic-voltammetry`. En la primera se ha hecho toda la gestión de la cronoamperometría mientras que en la segunda se ha implementado la voltammetría cíclica. 
+
+La gestión del resto de componentes (DAC, ADC, comunicación serie, *Timers*, relé y PMU) se ha realizado directamente en cada una de estas dos ramas principales. 
+
+De esta manera, el workflow de la aplciación es el siguiente:
+
+   
+
+
 
  
 
