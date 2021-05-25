@@ -135,6 +135,6 @@ void Mesurant_CV(struct CV_Configuration_S cvConfiguration) {
 
 
 
-void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim3) {
+void HAL_TIM_PeriodElapsedCallback_volta(TIM_HandleTypeDef *htim3) {
 	mesura_punt_volta = TRUE;
 }
