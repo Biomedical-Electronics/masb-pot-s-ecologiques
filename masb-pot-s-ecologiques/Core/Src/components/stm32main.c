@@ -7,13 +7,24 @@
 
 #include "components/stm32main.h"
 #include "components/masb_comm_s.h"
+#include "main.h"
+#include "components/ad5280_driver.h"
+#include "components/mcp4725_driver.h"
+#include "components/i2c_lib.h"
 
 struct CV_Configuration_S cvConfiguration;
+struct CA_Configuration_S caConfiguration;
 struct Data_S data;
 
 void setup(struct Handles_S *handles) {
-    MASB_COMM_S_setUart(handles->huart);
-    MASB_COMM_S_waitForMessage();
+	HAL_GPIO_Write_Oin(EN_GPIO_Port, EN_Pin,GPIO_PIN_RESET);
+
+	AD5280_Handle_T hpot = NULL;
+	hpot = AD5280_Init();
+
+	AD5280_ConfigSlaveAddress(hpot, 0x2C);
+	AD5280_ConfigNominalResistorValue(hpot, 50e3f);
+	AD5280_ConfigWriteFunction(hpot, I2C_Write);
 }
 
 void loop(void) {
@@ -30,8 +41,15 @@ void loop(void) {
 
  				__NOP(); // Esta instruccion no hace nada y solo sirve para poder anadir un breakpoint
 
- 				// Aqui iria todo el codigo de gestion de la medicion que hareis en el proyecto
+ 				// Aqui iria tod el codigo de gestion de la medicion que hareis en el proyecto
                 // si no quereis implementar el comando de stop.
+
+ 				break;
+ 			case START_CA_MEAS:
+
+ 				caConfiguration = MASB_COMM_S_getCaConfiguration();
+
+ 				__NOP();
 
  				break;
 
