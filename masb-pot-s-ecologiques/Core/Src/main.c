@@ -102,11 +102,6 @@ int main(void)
   MX_TIM3_Init();
   /* USER CODE BEGIN 2 */
 
-  struct Handles_S myhandles;
-  myHandles.huart = &huart2;
-
-  setup(&myHandles);
-
   /* USER CODE END 2 */
 
   /* Infinite loop */
