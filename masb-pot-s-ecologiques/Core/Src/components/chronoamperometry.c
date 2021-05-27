@@ -90,11 +90,9 @@ void Mesurant_Crono(struct CA_Configuration_S caConfiguration) {
 }
 
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim3) { // creamos el callback que nos permitirá entrar
-// en el while
+															   // en el while
 mesura_punt = TRUE;
 
-//8399 prescaler
-//10k vol dir que entre pic i pic hi ha 0.1ms i volem 10 pulsos. SAmpling perior 10
-//abrimos relé
+
 
 }

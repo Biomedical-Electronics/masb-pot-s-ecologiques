@@ -37,6 +37,7 @@ void loop(void) {
                  // la guardamos en la variable cvConfiguration
 				cvConfiguration = MASB_COMM_S_getCvConfiguration();
 
+				Mesurant_CV(cvConfiguration); // función que permite medir la voltametria cíclica
 
  				__NOP(); // Esta instruccion no hace nada y solo sirve para poder anadir un breakpoint
 
@@ -47,6 +48,8 @@ void loop(void) {
  			case START_CA_MEAS:
 
  				caConfiguration = MASB_COMM_S_getCaConfiguration();
+
+ 				Mesurant_Crono(caConfiguration); // función que permite medir la cronoamperometría
 
  				__NOP();
 

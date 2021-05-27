@@ -29,16 +29,19 @@ extern TIM_HandleTypeDef htim3;
 
 _Bool mesura_punt_volta = FALSE;
 double R_TIA_volta = 10000;
+extern char estado;
 
 // definimos el sampling period con la fórmula dada
 void Mesurant_CV(struct CV_Configuration_S cvConfiguration) {
+
 	uint8_t cycles = cvConfiguration.cycles;
-	uint32_t samp_period = cvConfiguration.eStep/cvConfiguration.scanRate;
-	int cambio = 1;
+	double samp_period = cvConfiguration.eStep/cvConfiguration.scanRate;
+
+
+	uint8_t cambio = 1;
 
 
 	double V_CELL_pre = cvConfiguration.eBegin; // fijamos la tensión de la celda electroquímica a eBegin
-
 	double vObjetivo = cvConfiguration.eVertex1; // establecemos como voltaje objetivo el del vértice 1
 	double V_DAC = (1.65 - (V_CELL_pre / 2.0));
 
@@ -53,9 +56,8 @@ void Mesurant_CV(struct CV_Configuration_S cvConfiguration) {
 
 	HAL_TIM_Base_Start_IT(&htim3); // inicializamos el timer
 
-
+	uint32_t repeticio = 1;
 	uint32_t counter = 1; // y el contador
-	uint32_t repeticio = 0;
 	uint32_t V_ADC = 0;
 	HAL_ADC_Start(&hadc1);
 
@@ -65,16 +67,10 @@ void Mesurant_CV(struct CV_Configuration_S cvConfiguration) {
 	double I_CELL = (double) V_CELL / R_TIA_volta;
 
 	mesura_punt_volta = FALSE;
-	counter = counter + samp_period;
-	struct Data_S data;
-	data.point = repeticio;
-	data.timeMs = counter;
-	data.voltage = V_CELL;
-	data.current = I_CELL;
 
-	MASB_COMM_S_sendData(data);
 
 	while (counter <= cycles) { // mientras el contador sea más pequeño que el número de ciclos
+		estado = "CV";
 		if (mesura_punt_volta == TRUE){ // si ha pasado el sampling period
 
 			// medimos V_cell e I_cell
@@ -82,6 +78,7 @@ void Mesurant_CV(struct CV_Configuration_S cvConfiguration) {
 			double I_CELL = (double)V_CELL/R_TIA_volta;
 			mesura_punt_volta = FALSE;
 
+			struct Data_S data;
 			data.point = repeticio;
 			data.timeMs = counter;
 			data.voltage = V_CELL;
@@ -106,7 +103,8 @@ void Mesurant_CV(struct CV_Configuration_S cvConfiguration) {
 					cambio = 1;
 
 			} else if (counter == cycles){
-					HAL_GPIO_WritePin(RELAY_GPIO_Port, RELAY_Pin, 0);
+					estado = "IDLE";
+
 					}
 			else{
 					vObjetivo = cvConfiguration.eVertex1;
@@ -127,6 +125,7 @@ void Mesurant_CV(struct CV_Configuration_S cvConfiguration) {
 	mesura_punt_volta = FALSE;
 	counter = counter + 1;
 	V_CELL = V_CELL + cvConfiguration.eStep;
+
 }
 	HAL_TIM_Base_Stop_IT(&htim3);
 	HAL_GPIO_WritePin(RELAY_GPIO_Port, RELAY_Pin, 0); // cerramos el relé
