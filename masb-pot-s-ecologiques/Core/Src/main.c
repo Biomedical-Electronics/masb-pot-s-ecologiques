@@ -22,6 +22,7 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
+#include "components/stm32main.h"
 
 /* USER CODE END Includes */
 
@@ -102,12 +103,18 @@ int main(void)
   MX_TIM3_Init();
   /* USER CODE BEGIN 2 */
 
+struct Handles_S MyHandles;
+MyHandles.huart= &huart2;
+MyHandles.hi2c = &hi2c1;
+setup(&MyHandles);
+
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
+	  loop();
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */

@@ -17,10 +17,10 @@
 #include "components/i2c_lib.h"
 #include "components/mcp4725_driver.h"
 
-static UART_HandleTypeDef *huart;
-static MCP4725_Handle_T hdac;
+//static UART_HandleTypeDef *huart;
+extern MCP4725_Handle_T hdac;
 extern ADC_HandleTypeDef hadc1;
-static I2C_HandleTypeDef *hi2c1;
+//static I2C_HandleTypeDef *hi2c1;
 extern TIM_HandleTypeDef htim3;
 
 _Bool mesura_punt = FALSE;

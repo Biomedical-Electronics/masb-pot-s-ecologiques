@@ -24,4 +24,6 @@ struct CV_Configuration_S {
 
 };
 
+void Mesurant_CV(struct CV_Configuration_S cvConfiguration);
+
 #endif /* INC_COMPONENTS_CYCLIC_VOLTAMMETRY_H_ */
