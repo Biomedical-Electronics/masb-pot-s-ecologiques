@@ -52,21 +52,27 @@ void Mesurant_CV(struct CV_Configuration_S cvConfiguration) {
 	__HAL_TIM_SET_COUNTER(&htim3, 0); // reiniciamos el contador del timer a 0
 
 	HAL_TIM_Base_Start_IT(&htim3); // inicializamos el timer
+	HAL_TIM_PeriodElapsedCallback(&htim3);
 
 	uint32_t repeticio = 1;
-	uint32_t counter = 1; // y el contador
-	uint32_t V_ADC = 0;
-	HAL_ADC_Start(&hadc1);
+	uint32_t counter = 0; // y el contador
+	//uint32_t V_ADC = 0;
+	//HAL_ADC_Start(&hadc1);
 
-	double V_CELL = HAL_ADC_GetValue(&hadc1);
+	//double V_CELL = HAL_ADC_GetValue(&hadc1);
 
-	V_CELL = (double) (1.65 - V_ADC) * 2;
+	//V_CELL = (double) (1.65 - V_ADC) * 2;
 
-	mesura_punt_volta = FALSE;
+	//mesura_punt_volta = FALSE;
 
 	while (counter <= cycles) { // mientras el contador sea más pequeño que el número de ciclos
 		//estado = "CV";
 		if (mesura_punt_volta == TRUE) { // si ha pasado el sampling period
+
+			HAL_ADC_Start(&hadc1);
+
+			HAL_ADC_PollForConversion(&hadc1, 50);
+			double V_ADC = HAL_ADC_GetValue(&hadc1)*3.3/4096; //conversion tenint en compte (voltatge referencia/4096) ja que opera a 12 bits
 
 			// medimos V_cell e I_cell
 			double V_CELL = (double) (1.65 - V_ADC) * 2;
@@ -79,7 +85,7 @@ void Mesurant_CV(struct CV_Configuration_S cvConfiguration) {
 			data.voltage = V_CELL;
 			data.current = I_CELL;
 
-			counter = counter + samp_period;
+			//counter = counter + samp_period;
 			repeticio = repeticio + 1;
 
 			// enviamos datos al host
@@ -99,6 +105,7 @@ void Mesurant_CV(struct CV_Configuration_S cvConfiguration) {
 
 				} else if (counter == cycles) {
 					//estado = "IDLE";
+					mesura_punt_volta = FALSE;
 
 				} else {
 					vObjetivo = cvConfiguration.eVertex1;
@@ -116,16 +123,14 @@ void Mesurant_CV(struct CV_Configuration_S cvConfiguration) {
 				}
 			}
 		}
-		mesura_punt_volta = FALSE;
 		counter = counter + 1;
-		V_CELL = V_CELL + cvConfiguration.eStep;
+		//double V_CELL = V_CELL + cvConfiguration.eStep;
 
 	}
+
 	HAL_TIM_Base_Stop_IT(&htim3);
 	HAL_GPIO_WritePin(RELAY_GPIO_Port, RELAY_Pin, 0); // cerramos el relé
 
 }
 
-void HAL_TIM_PeriodElapsedCallback_volta(TIM_HandleTypeDef *htim3) {
-	mesura_punt_volta = TRUE;
-}
+

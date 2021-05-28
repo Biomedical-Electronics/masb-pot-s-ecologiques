@@ -33,7 +33,7 @@ void Mesurant_Crono(struct CA_Configuration_S caConfiguration) {
 	double V_CELL_pre = caConfiguration.eDC; // fijamos la tensión de la celda electroquímica a eDC
 	double V_DAC = (1.65 - (V_CELL_pre / 2.0));
 
-	MCP4725_SetOutputVoltage(hdac, V_DAC); //shaura de comentar quan les proves
+	MCP4725_SetOutputVoltage(hdac, V_DAC);
 
 	HAL_GPIO_WritePin(RELAY_GPIO_Port, RELAY_Pin, 1);   //cerramos relé
 
@@ -47,40 +47,46 @@ void Mesurant_Crono(struct CA_Configuration_S caConfiguration) {
 	uint32_t counter = 0;
 	uint32_t repeticio = 0;
 	uint32_t V_ADC = 0;
-	HAL_ADC_Start(&hadc1);
+	//HAL_ADC_Start(&hadc1);
 
-	double V_CELL = HAL_ADC_GetValue(&hadc1);
 
-	V_CELL = (double) (1.65 - V_ADC) * 2;
+	double V_CELL = (double) (1.65 - V_ADC) * 2;
 	double I_CELL = (double) V_CELL / R_TIA;
 
-	mesura_punt = FALSE;
-	counter = counter + samp_period;
+	mesura_punt = FALSE; //Iniciamos la variable en FALSE para que no entre en el while a no ser que haya pasado el tiempo necesario
+
+	counter = counter + samp_period; // Creamos  el contador que nos permitirá controlar el tiempo de medición
+
 	struct Data_S data;
 	data.point = repeticio;
 	data.timeMs = counter;
 	data.voltage = V_CELL;
 	data.current = I_CELL;
 
-	MASB_COMM_S_sendData(data);
+	MASB_COMM_S_sendData(data); // enviamos los datos inciales
 
 	while (counter <= meas_time) {
 		if (mesura_punt == TRUE) {
 
-			double V_CELL = (double) (1.65 - V_ADC) * 2;
+			HAL_ADC_Start(&hadc1);
+
+			HAL_ADC_PollForConversion(&hadc1, 50);
+			V_ADC = HAL_ADC_GetValue(&hadc1)*3.3/4096; //conversion tenint en compte (voltatge referencia/4096) ja que opera a 12 bits
+
+			V_CELL = (double) (1.65 - V_ADC) * 2;
 			double I_CELL = (double) V_CELL / R_TIA;
-			mesura_punt = FALSE;
+			//mesura_punt = FALSE;
 
 			data.point = repeticio;
 			data.timeMs = counter;
 			data.voltage = V_CELL;
 			data.current = I_CELL;
 
+			MASB_COMM_S_sendData(data);
+
 			counter = counter + samp_period;
 			repeticio = repeticio + 1;
 		}
-
-		MASB_COMM_S_sendData(data);
 
 	}
 
@@ -92,7 +98,5 @@ void Mesurant_Crono(struct CA_Configuration_S caConfiguration) {
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim3) { // creamos el callback que nos permitirá entrar
 															   // en el while
 mesura_punt = TRUE;
-
-
 
 }
