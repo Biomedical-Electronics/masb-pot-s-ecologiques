@@ -52,7 +52,7 @@ void Mesurant_CV(struct CV_Configuration_S cvConfiguration) {
 	__HAL_TIM_SET_COUNTER(&htim3, 0); // reiniciamos el contador del timer a 0
 
 	HAL_TIM_Base_Start_IT(&htim3); // inicializamos el timer
-	HAL_TIM_PeriodElapsedCallback(&htim3);
+	//HAL_TIM_PeriodElapsedCallback(&htim3);
 
 	uint32_t repeticio = 1;
 	uint32_t counter = 0; // y el contador
@@ -85,11 +85,13 @@ void Mesurant_CV(struct CV_Configuration_S cvConfiguration) {
 			data.voltage = V_CELL;
 			data.current = I_CELL;
 
+			// enviamos datos al host
+			MASB_COMM_S_sendData(data);
+
 			//counter = counter + samp_period;
 			repeticio = repeticio + 1;
 
-			// enviamos datos al host
-			MASB_COMM_S_sendData(data);
+
 
 			if (V_CELL == vObjetivo) { // si V_cell es igual a V_objetivo
 
@@ -129,8 +131,12 @@ void Mesurant_CV(struct CV_Configuration_S cvConfiguration) {
 	}
 
 	HAL_TIM_Base_Stop_IT(&htim3);
-	HAL_GPIO_WritePin(RELAY_GPIO_Port, RELAY_Pin, 0); // cerramos el relé
+	//HAL_GPIO_WritePin(RELAY_GPIO_Port, RELAY_Pin, 0); // cerramos el relé
 
 }
 
+void HAL_TIM_PeriodElapsedCallback_volta(TIM_HandleTypeDef *htim3) { // creamos el callback que nos permitirá entrar
+															   // en el while
+mesura_punt_volta = TRUE;
 
+}
