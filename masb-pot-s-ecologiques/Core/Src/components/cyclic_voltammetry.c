@@ -7,6 +7,10 @@
  ******************************************************************************
  */
 
+// definimos las macros
+#define FALSE 			0
+#define TRUE 			1
+
 #include "components/cyclic_voltammetry.h"
 #include "components/stm32main.h"
 #include "components/masb_comm_s.h"
@@ -16,9 +20,7 @@
 #include "components/i2c_lib.h"
 #include "components/mcp4725_driver.h"
 
-// definimos las macros
-#define FALSE 			0
-#define TRUE 			1
+
 
 // inicializamos los periféricos
 //static UART_HandleTypeDef *huart;
@@ -43,7 +45,7 @@ void Mesurant_CV(struct CV_Configuration_S cvConfiguration) {
 	double vObjetivo = cvConfiguration.eVertex1; // establecemos como voltaje objetivo el del vértice 1
 	double V_DAC = (1.65 - (V_CELL_pre / 2.0));
 
-	MCP4725_SetOutputVoltage(hdac, V_DAC); // comentar para probar
+	MCP4725_SetOutputVoltage(hdac, V_DAC);
 
 	HAL_GPIO_WritePin(RELAY_GPIO_Port, RELAY_Pin, 1); // cerramos el relé
 
@@ -54,7 +56,7 @@ void Mesurant_CV(struct CV_Configuration_S cvConfiguration) {
 	HAL_TIM_Base_Start_IT(&htim3); // inicializamos el timer
 	//HAL_TIM_PeriodElapsedCallback(&htim3);
 
-	uint32_t repeticio = 1;
+	uint32_t repeticio = 0;
 	uint32_t counter = 0; // y el contador
 	//uint32_t V_ADC = 0;
 	//HAL_ADC_Start(&hadc1);
@@ -65,19 +67,20 @@ void Mesurant_CV(struct CV_Configuration_S cvConfiguration) {
 
 	//mesura_punt_volta = FALSE;
 
+
 	while (counter <= cycles) { // mientras el contador sea más pequeño que el número de ciclos
 		//estado = "CV";
 		if (mesura_punt_volta == TRUE) { // si ha pasado el sampling period
 
 			HAL_ADC_Start(&hadc1);
 
-			HAL_ADC_PollForConversion(&hadc1, 50);
+			HAL_ADC_PollForConversion(&hadc1, 100);
 			double V_ADC = HAL_ADC_GetValue(&hadc1)*3.3/4096; //conversion tenint en compte (voltatge referencia/4096) ja que opera a 12 bits
 
 			// medimos V_cell e I_cell
 			double V_CELL = (double) (1.65 - V_ADC) * 2;
 			double I_CELL = (double) V_CELL / R_TIA_volta;
-			mesura_punt_volta = FALSE;
+			//mesura_punt_volta = FALSE;
 
 			struct Data_S data;
 			data.point = repeticio;
@@ -90,7 +93,6 @@ void Mesurant_CV(struct CV_Configuration_S cvConfiguration) {
 
 			//counter = counter + samp_period;
 			repeticio = repeticio + 1;
-
 
 
 			if (V_CELL == vObjetivo) { // si V_cell es igual a V_objetivo
@@ -126,12 +128,11 @@ void Mesurant_CV(struct CV_Configuration_S cvConfiguration) {
 			}
 		}
 		counter = counter + 1;
-		//double V_CELL = V_CELL + cvConfiguration.eStep;
 
 	}
 
 	HAL_TIM_Base_Stop_IT(&htim3);
-	//HAL_GPIO_WritePin(RELAY_GPIO_Port, RELAY_Pin, 0); // cerramos el relé
+	HAL_GPIO_WritePin(RELAY_GPIO_Port, RELAY_Pin, 0); // abrimos el relé
 
 }
 

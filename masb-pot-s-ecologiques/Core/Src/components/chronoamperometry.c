@@ -6,8 +6,10 @@
  * @copyright	Copyright 2020 Albert Álvarez Carulla. All rights reserved.
  ******************************************************************************
  */
+// definimos las macros
 #define FALSE  			0
 #define TRUE 			1
+
 #include "components/chronoamperometry.h"
 #include "components/stm32main.h"
 #include "components/masb_comm_s.h"
@@ -25,6 +27,7 @@ extern TIM_HandleTypeDef htim3;
 
 _Bool mesura_punt = FALSE;
 double R_TIA = 10000;
+
 void Mesurant_Crono(struct CA_Configuration_S caConfiguration) {
 
 	uint32_t samp_period = caConfiguration.samplingPeriodMs;
@@ -70,7 +73,7 @@ void Mesurant_Crono(struct CA_Configuration_S caConfiguration) {
 
 			HAL_ADC_Start(&hadc1);
 
-			HAL_ADC_PollForConversion(&hadc1, 50);
+			HAL_ADC_PollForConversion(&hadc1, 100);
 			V_ADC = HAL_ADC_GetValue(&hadc1)*3.3/4096; //conversion tenint en compte (voltatge referencia/4096) ja que opera a 12 bits
 
 			V_CELL = (double) (1.65 - V_ADC) * 2;
