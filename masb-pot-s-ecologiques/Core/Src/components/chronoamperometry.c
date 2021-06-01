@@ -25,7 +25,7 @@ extern ADC_HandleTypeDef hadc1;
 //static I2C_HandleTypeDef *hi2c1;
 extern TIM_HandleTypeDef htim3;
 
-_Bool mesura_punt = FALSE;
+volatile _Bool mesura_punt = FALSE;
 double R_TIA = 10000;
 
 void Mesurant_Crono(struct CA_Configuration_S caConfiguration) {
@@ -74,7 +74,7 @@ void Mesurant_Crono(struct CA_Configuration_S caConfiguration) {
 			HAL_ADC_Start(&hadc1);
 
 			HAL_ADC_PollForConversion(&hadc1, 100);
-			V_ADC = HAL_ADC_GetValue(&hadc1)*3.3/4096; //conversion tenint en compte (voltatge referencia/4096) ja que opera a 12 bits
+			V_ADC = HAL_ADC_GetValue(&hadc1)*3.3/4095.0; //conversion tenint en compte (voltatge referencia/4096) ja que opera a 12 bits
 
 			V_CELL = (double) (1.65 - V_ADC) * 2;
 			double I_CELL = (double) V_CELL / R_TIA;
@@ -89,6 +89,8 @@ void Mesurant_Crono(struct CA_Configuration_S caConfiguration) {
 
 			counter = counter + samp_period;
 			repeticio = repeticio + 1;
+
+			mesura_punt = FALSE;
 		}
 
 	}

@@ -29,7 +29,7 @@ extern ADC_HandleTypeDef hadc1;
 //static I2C_HandleTypeDef *hi2c1;
 extern TIM_HandleTypeDef htim3;
 
-_Bool mesura_punt_volta = FALSE;
+extern volatile _Bool mesura_punt;
 double R_TIA_volta = 10000;
 //extern char estado;
 
@@ -37,7 +37,7 @@ double R_TIA_volta = 10000;
 void Mesurant_CV(struct CV_Configuration_S cvConfiguration) {
 
 	uint8_t cycles = cvConfiguration.cycles;
-	double samp_period = cvConfiguration.eStep / cvConfiguration.scanRate;
+	double samp_period = cvConfiguration.eStep / cvConfiguration.scanRate * 1000.0;
 
 	uint8_t cambio = 1;
 
@@ -49,12 +49,11 @@ void Mesurant_CV(struct CV_Configuration_S cvConfiguration) {
 
 	HAL_GPIO_WritePin(RELAY_GPIO_Port, RELAY_Pin, 1); // cerramos el relé
 
-	__HAL_TIM_SET_AUTORELOAD(&htim3, samp_period * 10); //fijamos periodo
+	__HAL_TIM_SET_AUTORELOAD(&htim3, samp_period * 10.0); //fijamos periodo
 
 	__HAL_TIM_SET_COUNTER(&htim3, 0); // reiniciamos el contador del timer a 0
 
 	HAL_TIM_Base_Start_IT(&htim3); // inicializamos el timer
-	//HAL_TIM_PeriodElapsedCallback(&htim3);
 
 	uint32_t repeticio = 0;
 	uint32_t counter = 0; // y el contador
@@ -68,14 +67,14 @@ void Mesurant_CV(struct CV_Configuration_S cvConfiguration) {
 	//mesura_punt_volta = FALSE;
 
 
-	while (counter <= cycles) { // mientras el contador sea más pequeño que el número de ciclos
+	while (cycles) { // mientras el contador sea más pequeño que el número de ciclos
 		//estado = "CV";
-		if (mesura_punt_volta == TRUE) { // si ha pasado el sampling period
+		if (mesura_punt == TRUE) { // si ha pasado el sampling period
 
 			HAL_ADC_Start(&hadc1);
 
 			HAL_ADC_PollForConversion(&hadc1, 100);
-			double V_ADC = HAL_ADC_GetValue(&hadc1)*3.3/4096; //conversion tenint en compte (voltatge referencia/4096) ja que opera a 12 bits
+			double V_ADC = HAL_ADC_GetValue(&hadc1)*3.3/4095.0; //conversion tenint en compte (voltatge referencia/4096) ja que opera a 12 bits
 
 			// medimos V_cell e I_cell
 			double V_CELL = (double) (1.65 - V_ADC) * 2;
@@ -85,49 +84,51 @@ void Mesurant_CV(struct CV_Configuration_S cvConfiguration) {
 			struct Data_S data;
 			data.point = repeticio;
 			data.timeMs = counter;
-			data.voltage = V_CELL;
+//			data.voltage = V_CELL;
+			data.voltage = V_CELL_pre;
 			data.current = I_CELL;
 
 			// enviamos datos al host
 			MASB_COMM_S_sendData(data);
 
-			//counter = counter + samp_period;
+			counter = counter + samp_period;
 			repeticio = repeticio + 1;
 
 
-			if (V_CELL == vObjetivo) { // si V_cell es igual a V_objetivo
+			if (V_CELL_pre == vObjetivo) { // si V_cell es igual a V_objetivo
 
-				if (V_CELL == cvConfiguration.eVertex1) {
+				if (V_CELL_pre == cvConfiguration.eVertex1) {
 
 					vObjetivo = cvConfiguration.eVertex2; // hacemos que el objetivo sea el otro extremo
 					cambio = -1;
 
-				} else if (V_CELL == cvConfiguration.eVertex2) { // si es falso
+				} else if (V_CELL_pre == cvConfiguration.eVertex2) { // si es falso
 
 					vObjetivo = cvConfiguration.eBegin; // fijamos el valor de vObjetivo
 					cambio = 1;
 
-				} else if (counter == cycles) {
-					//estado = "IDLE";
-					mesura_punt_volta = FALSE;
-
 				} else {
 					vObjetivo = cvConfiguration.eVertex1;
 					cambio = 1;
+					cycles--;
+
 
 				}
+
 			}
 
 			else {
-				if (V_CELL + cambio * (cvConfiguration.eStep) > vObjetivo) {
-					MASB_COMM_S_sendData(data);
+				if (V_CELL_pre + cambio * (cvConfiguration.eStep) > vObjetivo) {
+					V_CELL_pre = vObjetivo;
 				} else {
-					V_CELL = V_CELL + (cvConfiguration.eStep * cambio);
-					MASB_COMM_S_sendData(data);
+					V_CELL_pre = V_CELL_pre + (cvConfiguration.eStep * cambio);
 				}
 			}
+
+			mesura_punt = FALSE;
 		}
-		counter = counter + 1;
+
+
 
 	}
 
@@ -136,8 +137,3 @@ void Mesurant_CV(struct CV_Configuration_S cvConfiguration) {
 
 }
 
-void HAL_TIM_PeriodElapsedCallback_volta(TIM_HandleTypeDef *htim3) { // creamos el callback que nos permitirá entrar
-															   // en el while
-mesura_punt_volta = TRUE;
-
-}
