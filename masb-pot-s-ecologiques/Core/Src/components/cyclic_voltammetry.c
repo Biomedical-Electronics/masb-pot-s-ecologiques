@@ -102,33 +102,59 @@ void Mesurant_CV(struct CV_Configuration_S cvConfiguration) {
 					vObjetivo = cvConfiguration.eVertex2; // hacemos que el objetivo sea el otro extremo
 					cambio = -1;
 
+
+
 				} else if (V_CELL_pre == cvConfiguration.eVertex2) { // si es falso
 
 					vObjetivo = cvConfiguration.eBegin; // fijamos el valor de vObjetivo
 					cambio = 1;
 
+
 				} else {
 					vObjetivo = cvConfiguration.eVertex1;
 					cambio = 1;
 					cycles--;
-
-
 				}
 
 			}
 
 			else {
-				if (V_CELL_pre + cambio * (cvConfiguration.eStep) > vObjetivo) {
-					V_CELL_pre = vObjetivo;
-				} else {
-					V_CELL_pre = V_CELL_pre + (cvConfiguration.eStep * cambio);
+				if (V_CELL_pre == cvConfiguration.eVertex1) {
+					if (V_CELL_pre + cambio * (cvConfiguration.eStep) > vObjetivo) {
+						V_CELL_pre = vObjetivo;
+						MCP4725_SetOutputVoltage(hdac, V_CELL_pre);
+					}
+					else {
+						V_CELL_pre = V_CELL_pre + (cvConfiguration.eStep * cambio);
+						MCP4725_SetOutputVoltage(hdac, V_CELL_pre);
+					}
 				}
+
+				else if (V_CELL_pre == cvConfiguration.eVertex2){
+					if (V_CELL_pre + cambio * (cvConfiguration.eStep) < vObjetivo) {
+						V_CELL_pre = vObjetivo;
+						MCP4725_SetOutputVoltage(hdac, V_CELL_pre);
+					}
+					else {
+						V_CELL_pre = V_CELL_pre + (cvConfiguration.eStep * cambio);
+						MCP4725_SetOutputVoltage(hdac, V_CELL_pre);
+					}
+				}
+				else if (V_CELL_pre == cvConfiguration.eBegin){
+					if (V_CELL_pre + cambio * (cvConfiguration.eStep) > vObjetivo) {
+						V_CELL_pre = vObjetivo;
+						MCP4725_SetOutputVoltage(hdac, V_CELL_pre);
+					}
+					else if (V_CELL_pre + cambio * (cvConfiguration.eStep) < vObjetivo){
+						V_CELL_pre = V_CELL_pre + (cvConfiguration.eStep * cambio);
+						MCP4725_SetOutputVoltage(hdac, V_CELL_pre);
+					}
+				}
+
 			}
 
 			mesura_punt = FALSE;
 		}
-
-
 
 	}
 

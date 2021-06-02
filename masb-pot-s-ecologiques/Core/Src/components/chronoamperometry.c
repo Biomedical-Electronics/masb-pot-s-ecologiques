@@ -68,6 +68,8 @@ void Mesurant_Crono(struct CA_Configuration_S caConfiguration) {
 
 	MASB_COMM_S_sendData(data); // enviamos los datos inciales
 
+	repeticio = repeticio + 1;
+
 	while (counter <= meas_time) {
 		if (mesura_punt == TRUE) {
 
@@ -75,9 +77,13 @@ void Mesurant_Crono(struct CA_Configuration_S caConfiguration) {
 
 			HAL_ADC_PollForConversion(&hadc1, 100);
 			V_ADC = HAL_ADC_GetValue(&hadc1)*3.3/4095.0; //conversion tenint en compte (voltatge referencia/4096) ja que opera a 12 bits
-
 			V_CELL = (double) (1.65 - V_ADC) * 2;
-			double I_CELL = (double) V_CELL / R_TIA;
+
+			// mismo procedimiento pero para la intensidad
+			HAL_ADC_Start(&hadc1);
+			HAL_ADC_PollForConversion(&hadc1,100);
+			V_ADC = HAL_ADC_GetValue(&hadc1)*3.3/4095.0;
+			double I_CELL = (double) V_ADC / R_TIA;
 			//mesura_punt = FALSE;
 
 			data.point = repeticio;
