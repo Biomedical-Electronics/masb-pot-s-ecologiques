@@ -7,8 +7,8 @@
 El grupo que ha realizado éste proyecto se llama `ecologiques` y está formado por **Helena Riesco** y **Maria Penón**.
 
 <p align="left">
-<a href="masb-pot-s-ecologiques/Docs/assets/imgs/MARIA-PENON-BOSOM.png">
-<img src="masb-pot-s-ecologiques/Docs/assets/imgs/MARIA-PENON-BOSOM.png" width=200 alt="Maria" />
+<a href="masb-pot-s-ecologiques/Docs/assets/imgs/MARIA-PENON-BOSOM.jpg">
+<img src="masb-pot-s-ecologiques/Docs/assets/imgs/MARIA-PENON-BOSOM.jpg" width=200 alt="Maria" />
 </a>
 </p>
 
