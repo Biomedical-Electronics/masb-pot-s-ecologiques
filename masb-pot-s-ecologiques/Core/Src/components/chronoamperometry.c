@@ -6,7 +6,7 @@
  * @copyright	Copyright 2020 Albert Álvarez Carulla. All rights reserved.
  ******************************************************************************
  */
-// definimos las macros
+// definimos las macros para true y false
 #define FALSE  			0
 #define TRUE 			1
 
@@ -19,10 +19,8 @@
 #include "components/i2c_lib.h"
 #include "components/mcp4725_driver.h"
 
-//static UART_HandleTypeDef *huart;
 extern MCP4725_Handle_T hdac;
 extern ADC_HandleTypeDef hadc1;
-//static I2C_HandleTypeDef *hi2c1;
 extern TIM_HandleTypeDef htim3;
 
 volatile _Bool mesura_punt = FALSE;
@@ -50,7 +48,6 @@ void Mesurant_Crono(struct CA_Configuration_S caConfiguration) {
 	uint32_t counter = 0;
 	uint32_t repeticio = 0;
 	uint32_t V_ADC = 0;
-	//HAL_ADC_Start(&hadc1);
 
 
 	double V_CELL = (double) (1.65 - V_ADC) * 2;

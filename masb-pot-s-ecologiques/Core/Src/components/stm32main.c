@@ -13,12 +13,13 @@
 #include "components/masb_comm_s.h"
 #include "components/mcp4725_driver.h"
 
+// creamos las estructuras que necesitaremos
 struct CV_Configuration_S cvConfiguration;
 struct CA_Configuration_S caConfiguration;
 struct Data_S data;
 MCP4725_Handle_T hdac;
 
-void setup(struct Handles_S *handles) {
+void setup(struct Handles_S *handles) { // el tramo que solo se repetirá una vez
 	HAL_GPIO_WritePin(EN_GPIO_Port, EN_Pin, GPIO_PIN_RESET);
 	I2C_Init(handles->hi2c);
 
@@ -61,8 +62,6 @@ void loop(void) {
 
  				__NOP(); // Esta instruccion no hace nada y solo sirve para poder anadir un breakpoint
 
- 				// Aqui iria tod el codigo de gestion de la medicion que hareis en el proyecto
-                // si no quereis implementar el comando de stop.
 
  				break;
  			case START_CA_MEAS:
@@ -77,13 +76,9 @@ void loop(void) {
 
 			case STOP_MEAS: // Si hemos recibido STOP_MEAS
 
- 				/*
- 				 * Debemos de enviar esto desde CoolTerm:
- 				 * 020300
- 				 */
+
  				__NOP(); // Esta instruccion no hace nada y solo sirve para poder anadir un breakpoint
 
- 				// Aqui iria el codigo para tener la medicion si implementais el comando stop.
 
  				break;
 
