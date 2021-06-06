@@ -6,7 +6,11 @@
 
 El grupo que ha realizado éste proyecto se llama `ecologiques` y está formado por **Helena Riesco** y **Maria Penón**.
 
-
+<p align="left">
+<a href="masb-pot-s-ecologiques/Docs/assets/imgs/MARIA-PENON-BOSOM.png">
+<img src="masb-pot-s-ecologiques/Docs/assets/imgs/MARIA-PENON-BOSOM.png" width=200 alt="Maria" />
+</a>
+</p>
 
 ## Contenidos <!-- omit in toc -->
 
@@ -32,10 +36,11 @@ El grupo que ha realizado éste proyecto se llama `ecologiques` y está formado 
 Un potenciostato es un dispositivo electrónico necesario para controlar una celda de tres electrodos para un experimento electroanalítico. El sistema funciona manteniendo el potencial del electrodo de trabajo a un nivel constante con respecto al potencial del electrodo de referencia mediante el ajuste de la corriente en un electrodo auxiliar. Esto significa que es el responsable de polarizar la celda electroquímica a una tensión VCELL y la tensión ICELL que circula por ella. Para establecer VCELL, se va a utilizar la DAC modelo MCP4725 con dirección I2C `1100000`, pues permite generar una tensión de salida de 0 a 4V [1]. En la Figura 1 se puede ver un esquema del circuito eléctrico de un potenciostato básico.
 
 <p align="center">
-<a href="Docs/assets/imgs/circuit.png">
-<img src="Docs/assets/imgs/circuit.png" alt="circuits" />
+<a href="masb-pot-s-ecologiques/Docs/assets/imgs/circuit.png">
+<img src="masb-pot-s-ecologiques/Docs/assets/imgs/circuit.png" alt="circuits" />
 </a>
 </p>
+
 
 
 
@@ -62,10 +67,11 @@ Esta técnica es de gran utilidad, especialmente en estudios de procesos *redox*
 En la Figura 2 un ejemplo de gráficos que se pueden extraer al realizar una voltametría cíclica se pueden ver.
 
 <p align="center">
-<a href="Docs/assets/imgs/voltametria.png">
-<img src="Docs/assets/imgs/voltametria.png" alt="voltametria" />
+<a href="masb-pot-s-ecologiques/Docs/assets/imgs/voltametria.png">
+<img src="masb-pot-s-ecologiques/Docs/assets/imgs/voltametria.png" alt="voltametria" />
 </a>
 </p>
+
 
 
 > Figura 2. a)  Forma de onda de entrada de voltametría cíclica voltage vs tiempo b) ejemplo de una gráfica de salida corrente vs voltage [3].
@@ -77,10 +83,11 @@ Una Cronoamperometría (CA) es una técnica electroquímica que transduce la act
 
 
 <p align="center">
-<a href="Docs/assets/imgs/crono.png">
-<img src="Docs/assets/imgs/crono.png" alt="crono" />
+<a href="masb-pot-s-ecologiques/Docs/assets/imgs/crono.png">
+<img src="masb-pot-s-ecologiques/Docs/assets/imgs/crono.png" alt="crono" />
 </a>
 </p>
+
 
 
 > Figura 3. a)  Forma de onda de entrada de voltametría cíclica voltage vs Tiempo b) ejemplo de una gráfica de salida corrente vs voltage [3].
@@ -110,10 +117,11 @@ STM32 Nucleo-F401RE de STMicroelectronics
 
 
 <p align="center">
-<a href="Docs/assets/imgs/STM.png">
-<img src="Docs/assets/imgs/STM.png" alt="STM" />
+<a href="masb-pot-s-ecologiques/Docs/assets/imgs/STM.png">
+<img src="masb-pot-s-ecologiques/Docs/assets/imgs/STM.png" alt="STM" />
 </a>
 </p>
+
 
 
 > Figura 4. a)  NUCLEO-F401RE de STMicroelectronics [4].
