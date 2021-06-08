@@ -114,7 +114,7 @@ setup(&MyHandles);
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-	  loop();
+	  loop(); // lo que se repetirá en bucle
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */

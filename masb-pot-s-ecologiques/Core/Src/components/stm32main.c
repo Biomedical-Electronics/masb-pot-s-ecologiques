@@ -20,7 +20,7 @@ struct Data_S data;
 MCP4725_Handle_T hdac;
 
 void setup(struct Handles_S *handles) { // el tramo que solo se repetirá una vez
-	HAL_GPIO_WritePin(EN_GPIO_Port, EN_Pin, GPIO_PIN_RESET);
+	HAL_GPIO_WritePin(EN_GPIO_Port, EN_Pin, GPIO_PIN_RESET); //
 	I2C_Init(handles->hi2c);
 
 
@@ -37,6 +37,7 @@ void setup(struct Handles_S *handles) { // el tramo que solo se repetirá una ve
 	// de alimentacion) e indicamos que funcion queremos que se encargue de la
 	// escritura a traves del I2C. Utilizaremos la funcion I2C_Write de la libreria
 	// i2c_lib.
+
 	MCP4725_ConfigSlaveAddress(hdac, 0x66);
 	MCP4725_ConfigVoltageReference(hdac, 4.0f);
 	MCP4725_ConfigWriteFunction(hdac, I2C_Write);
@@ -44,10 +45,11 @@ void setup(struct Handles_S *handles) { // el tramo que solo se repetirá una ve
 	// Esto lo ejecutamos cada vez que queremos generar una tension nueva. ---------
 	MCP4725_SetOutputVoltage(hdac, 0.0f);
 
-	MASB_COMM_S_waitForMessage();
+	MASB_COMM_S_waitForMessage(); // esperamos a recibir un mensaje
 }
 
-void loop(void) {
+void loop(void) { // seccion que se repetirá en bucle
+
     if (MASB_COMM_S_dataReceived()) { // Si se ha recibido un mensaje...
 
  		switch(MASB_COMM_S_command()) { // Miramos que comando hemos recibido
@@ -62,13 +64,13 @@ void loop(void) {
 
  				__NOP(); // Esta instruccion no hace nada y solo sirve para poder anadir un breakpoint
 
-
  				break;
- 			case START_CA_MEAS:
 
- 				caConfiguration = MASB_COMM_S_getCaConfiguration();
+ 			case START_CA_MEAS: // si hemos recibido la instrucción de la cronoamperometria
 
- 				Mesurant_Crono(caConfiguration); // función que permite medir la cronoamperometría
+ 				caConfiguration = MASB_COMM_S_getCaConfiguration(); // Leemos la configuracion que se nos ha enviado y la guardamos
+
+ 				Mesurant_Crono(caConfiguration); // aplicamos la configuracion a la función que permite medir la cronoamperometría
 
  				__NOP();
 
