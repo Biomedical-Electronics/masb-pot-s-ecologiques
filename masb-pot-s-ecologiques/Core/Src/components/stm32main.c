@@ -20,8 +20,10 @@ struct Data_S data;
 MCP4725_Handle_T hdac;
 
 void setup(struct Handles_S *handles) { // el tramo que solo se repetirá una vez
-	HAL_GPIO_WritePin(EN_GPIO_Port, EN_Pin, GPIO_PIN_RESET); //
-	I2C_Init(handles->hi2c);
+	HAL_GPIO_WritePin(EN_GPIO_Port, EN_Pin, GPIO_PIN_SET); //
+	HAL_Delay(500);
+
+	I2C_init(handles->hi2c);
 
 
 	AD5280_Handle_T hpot = NULL;
@@ -29,7 +31,8 @@ void setup(struct Handles_S *handles) { // el tramo que solo se repetirá una ve
 
 	AD5280_ConfigSlaveAddress(hpot, 0x2C);
 	AD5280_ConfigNominalResistorValue(hpot, 50e3f);
-	AD5280_ConfigWriteFunction(hpot, I2C_Write);
+	AD5280_ConfigWriteFunction(hpot, I2C_write);
+	AD5280_SetWBResistance(hpot, 50e3f);
 
 	hdac = MCP4725_Init();
 
@@ -40,7 +43,7 @@ void setup(struct Handles_S *handles) { // el tramo que solo se repetirá una ve
 
 	MCP4725_ConfigSlaveAddress(hdac, 0x66);
 	MCP4725_ConfigVoltageReference(hdac, 4.0f);
-	MCP4725_ConfigWriteFunction(hdac, I2C_Write);
+	MCP4725_ConfigWriteFunction(hdac, I2C_write);
 
 	// Esto lo ejecutamos cada vez que queremos generar una tension nueva. ---------
 	MCP4725_SetOutputVoltage(hdac, 0.0f);

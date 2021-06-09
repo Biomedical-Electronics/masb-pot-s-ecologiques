@@ -19,6 +19,7 @@
 #include "components/ad5280_driver.h"
 #include "components/i2c_lib.h"
 #include "components/mcp4725_driver.h"
+#include "components/formulas.h"
 
 // ponemos la inicialización de los periféricos
 extern MCP4725_Handle_T hdac;
@@ -26,7 +27,7 @@ extern ADC_HandleTypeDef hadc1;
 extern TIM_HandleTypeDef htim3;
 
 volatile _Bool mesura_punt = FALSE; // variable que nos permitirá entrar en el bucle
-double R_TIA = 10000; // definimos la resistencia de transimp
+double R_TIA = 50000; // definimos la resistencia de transimp
 
 void Mesurant_Crono(struct CA_Configuration_S caConfiguration) { //definicion de la funcion como tal
 
@@ -34,7 +35,7 @@ void Mesurant_Crono(struct CA_Configuration_S caConfiguration) { //definicion de
 	uint32_t meas_time = caConfiguration.measurementTime * 1000; // y el de medición multiplicado por 1000 para ser ms
 
 	double V_CELL_pre = caConfiguration.eDC; // fijamos la tensión de la celda electroquímica a eDC
-	double V_DAC = (1.65 - (V_CELL_pre / 2.0));
+	float V_DAC = calculateDacOutputVoltage(V_CELL_pre);
 
 	MCP4725_SetOutputVoltage(hdac, V_DAC); // fijamos el output del DAC
 
@@ -51,9 +52,17 @@ void Mesurant_Crono(struct CA_Configuration_S caConfiguration) { //definicion de
 	uint32_t repeticio = 0; // variable que nos indicará el punto de medición
 	uint32_t V_ADC = 0;
 
+	HAL_ADC_Start(&hadc1); // iniciamos el ADC
+	HAL_ADC_PollForConversion(&hadc1, 100); // realizamos la conversión
+	V_ADC = HAL_ADC_GetValue(&hadc1); //conversion teniendo en cuenta (voltaje referencia/4095) yaa que opera a 12 bits
 
-	double V_CELL = (double) (1.65 - V_ADC) * 2; // voltaje de celda
-	double I_CELL = (double) V_CELL / R_TIA; // corriente de celda
+	double V_CELL =calculateVrefVoltage(V_ADC); // voltaje de celda
+
+	HAL_ADC_Start(&hadc1);
+	HAL_ADC_PollForConversion(&hadc1,100);
+	V_ADC = HAL_ADC_GetValue(&hadc1);
+
+	double I_CELL = calculateIcellCurrent(V_ADC); // corriente de celda
 
 	mesura_punt = FALSE; //Iniciamos la variable en FALSE para que no entre en el while a no ser que haya pasado el tiempo necesario
 
@@ -73,16 +82,16 @@ void Mesurant_Crono(struct CA_Configuration_S caConfiguration) { //definicion de
 		if (mesura_punt == TRUE) { // si ha saltado el callback cambiando el valor de la variable
 
 			HAL_ADC_Start(&hadc1); // iniciamos el ADC
-
 			HAL_ADC_PollForConversion(&hadc1, 100); // realizamos la conversión
-			V_ADC = HAL_ADC_GetValue(&hadc1)*3.3/4095.0; //conversion teniendo en cuenta (voltaje referencia/4095) yaa que opera a 12 bits
-			V_CELL = (double) (1.65 - V_ADC) * 2;
+			V_ADC = HAL_ADC_GetValue(&hadc1); //conversion teniendo en cuenta (voltaje referencia/4095) yaa que opera a 12 bits
 
-			// mismo procedimiento pero para la intensidad
+			V_CELL =calculateVrefVoltage(V_ADC); // voltaje de celda
+
 			HAL_ADC_Start(&hadc1);
 			HAL_ADC_PollForConversion(&hadc1,100);
-			V_ADC = HAL_ADC_GetValue(&hadc1)*3.3/4095.0;
-			double I_CELL = (double) V_ADC / R_TIA;
+			V_ADC = HAL_ADC_GetValue(&hadc1);
+
+			I_CELL = calculateIcellCurrent(V_ADC);
 
 			data.point = repeticio;
 			data.timeMs = counter;
