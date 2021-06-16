@@ -1,10 +1,10 @@
-# Proyecto MASB-POT-S
+# MASB-POT-S Project
 
 <img align="left" src="https://img.shields.io/badge/Proyecto-Potenciostato-yellow"><img align="left" src="https://img.shields.io/badge/Entorno de desarrollo-STM32CubeIDE-blue"><img align="left" src="https://img.shields.io/badge/Versión-v0.1.0-green"></br>
 
-Éste proyecto consiste en la programación de un potenciostato formado por un *front-end* previamente diseñado por Albert Álvarez, y un *back-end* basado en la *Evaluation Board* (EVB) NUCLEO-F401RE de STMicroelectronics. Ésta configuración se va a realizar para llevar a cabo pruebas electroquímicas. 
+This project consists on the programming of a potentiostat formed by a _front-end_ previously designed by Albert Álvarez, and a _back-end_ based on the *Evaluation Board* (EVB) NUCLEO-F401RE of STMicroelectronics. This configuration is going to be used for electrichemical testing,
 
-El grupo que ha realizado éste proyecto se llama `ecologiques` y está formado por **Helena Riesco** y **Maria Penón**.
+The group that has developed this project is called `ecologiques` and is composed by **Maria Penon** and **Helena Riesco**.
 
 <p align="left">
 <a href="masb-pot-s-ecologiques/Docs/assets/imgs/MARIA-PENON-BOSOM.jpg">
@@ -26,12 +26,12 @@ El grupo que ha realizado éste proyecto se llama `ecologiques` y está formado 
 
 
 
-> Figura 1. Maria Penon i Helena Riesco
+> Figure 1. Maria Penon and Helena Riesco
 
-## Contenidos <!-- omit in toc -->
+## Index<!-- omit in toc -->
 
-- [Proyecto MASB-POT-S](#proyecto-masb-pot-s)
-  - [Introducción](#introducción)
+- [MASB-POT-S Project](#masb-pot-s-project)
+  - [Introduction](#introduction)
     - [Potenciostato](#Potenciostato)
     - [Voltametría cíclica](#Voltametría-cíclica)
     - [Cronoamperometría](#Cronoamperometría)
@@ -53,24 +53,26 @@ El grupo que ha realizado éste proyecto se llama `ecologiques` y está formado 
 
 
 
-## Introducción
+## Introduction
 
-### Potenciostato
+### Potenciostat
 
-Un potenciostato es un dispositivo electrónico necesario para controlar una celda de tres electrodos para un experimento electroanalítico. El sistema funciona manteniendo el potencial del electrodo de trabajo a un nivel constante con respecto al potencial del electrodo de referencia mediante el ajuste de la corriente en un electrodo auxiliar. Esto significa que es el responsable de polarizar la celda electroquímica a una tensión VCELL y la corriente ICELL que circula por ella. Para establecer VCELL, se va a utilizar la DAC modelo MCP4725 con dirección I2C `1100000`, pues permite generar una tensión de salida de 0 a 4V [1]. En la Figura 2 se puede ver un esquema del circuito eléctrico de un potenciostato básico.
+A potentiostat is a necessary electronic devise to control a three electrode cell for an electroanalytic experiment. The system works by mantaining the working electrode potential at a constant level respect to the reference electrode potential using adjustments of the current in the auxiliar electrode. This means that it is the responsable for polarizing the cell at a voltage VCELL and a current ICELL that goes through it. To establish VCELL, a DAC model MCP4725 with I2C direction `1100000` is going to be used since it allows the generation of an output voltage between 0 to 4V [1]. In Figure 2 a basic electrical circuit of a potentiostat can be seen.
 
 <p align="center">
 <a href="masb-pot-s-ecologiques/Docs/assets/imgs/circuit.png">
 <img src="masb-pot-s-ecologiques/Docs/assets/imgs/circuit.png" alt="circuits" />
 </a>
 </p>
-> Figura 2. Esquema básico de un potenciostato [2].
+> Figure 2. Basic electrical circuit of a potentiostat [2].
 
-Estos dispositivos son muy usados en el mundo de la sensórica médica ya que tienen una sensibilidad muy grande.
+This type of devices are often used in the field of medical sensors since they have high sensitivity.
 
-El objetivo es que, una vez programado y a voluntad del usuario, se pueda utilizar para realizar dos medidas electroquímicas: la **voltammetría cíclica** y la **cronoamperometría**.
+The main goal of such device is that, once it has been programmed and at the will of a user, it can be used to make two electrochemical readings_ the **cyclic voltammetry** and a **chronoamperometry**
 
-Son precisamente la correcta realización de éstas dos medidas uno de los objetivos de éste proyecto.
+It's the correct function of these two types of measures that is the main goal of this project.
+
+
 
 ### Voltametría cíclica
 
@@ -177,35 +179,39 @@ Primeramente se inicializó la rama `feature/chronoamperomety` y se crearon las 
 
 
 <p align="center">
-<a href="masb-pot-s-ecologiques/Docs/assets/imgs/general.jpeg">
-<img src="masb-pot-s-ecologiques/Docs/assets/imgs/general.jpeg" width=350 alt="general" />
+<a href="masb-pot-s-ecologiques/Docs/assets/imgs/general_en.jpeg">
+<img src="masb-pot-s-ecologiques/Docs/assets/imgs/general_en.jpeg" width=350 alt="general" />
 </a>
 </p>
+
 > Figura 6. Estructura general de archivo stm32main.c
 
 En las dos figuras siguientes, se detallan el funcionamiento de las funciones `setup()`y `loop()`.
 
 <p align="center">
-<a href="masb-pot-s-ecologiques/Docs/assets/imgs/setup.jpeg">
-<img src="masb-pot-s-ecologiques/Docs/assets/imgs/setup.jpeg" width=350 alt="setup" />
+<a href="masb-pot-s-ecologiques/Docs/assets/imgs/setup_en.jpeg">
+<img src="masb-pot-s-ecologiques/Docs/assets/imgs/setup_en.jpeg" width=350 alt="setup" />
 </a>
 </p>
+
 > Figura 7. Estructura de función `setup()`.
 
 <p align="center">
-<a href="masb-pot-s-ecologiques/Docs/assets/imgs/loop.jpeg">
-<img src="masb-pot-s-ecologiques/Docs/assets/imgs/loop.jpeg" width=350 alt="loop" />
+<a href="masb-pot-s-ecologiques/Docs/assets/imgs/loop_en.jpeg">
+<img src="masb-pot-s-ecologiques/Docs/assets/imgs/loop_en.jpeg" width=350 alt="loop" />
 </a>
 </p>
+
 > Figura 8. Estructura de función `loop()`.
 
 Una vez finalizado éste archivo, se ha creado un archivo `chronoamperometry.c` y su respectivo header `chronoamperometry.h`. En la siguiente Figura, Figura 9, se puede ver su implementació en un workflow.
 
 <p align="center">
-<a href="masb-pot-s-ecologiques/Docs/assets/imgs/crono.jpeg">
-<img src="masb-pot-s-ecologiques/Docs/assets/imgs/crono.jpeg" width=350 alt="Crono" />
+<a href="masb-pot-s-ecologiques/Docs/assets/imgs/crono_en.jpeg">
+<img src="masb-pot-s-ecologiques/Docs/assets/imgs/crono_en.jpeg" width=350 alt="Crono" />
 </a>
 </p>
+
 
 > Figura 9. Estructura general del archivo `chronoamperometry.c`
 
