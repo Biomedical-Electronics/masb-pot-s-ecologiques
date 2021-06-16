@@ -8,24 +8,48 @@ El grupo que ha realizado éste proyecto se llama `ecologiques` y está formado 
 
 <p align="left">
 <a href="masb-pot-s-ecologiques/Docs/assets/imgs/MARIA-PENON-BOSOM.jpg">
-<img src="masb-pot-s-ecologiques/Docs/assets/imgs/MARIA-PENON-BOSOM.jpg" width=200 alt="Maria" />
+<a href="masb-pot-s-ecologiques/Docs/assets/imgs/HELENA-RIESCO-DOMINGO.jpg">
+<img src="masb-pot-s-ecologiques/Docs/assets/imgs/MARIA-PENON-BOSOM.jpg" width=250 align= left alt="Maria" />
+<img src="masb-pot-s-ecologiques/Docs/assets/imgs/HELENA-RIESCO-DOMINGO.jpg" width=250 align= right alt="Helena" />
 </a>
 </p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+> Figura 1. Maria Penon i Helena Riesco
 
 ## Contenidos <!-- omit in toc -->
 
 - [Proyecto MASB-POT-S](#proyecto-masb-pot-s)
   - [Introducción](#introducción)
+    - [Potenciostato](#Potenciostato)
+    - [Voltametría cíclica](#Voltametría-cíclica)
+    - [Cronoamperometría](#Cronoamperometría)
   - [Objetivos](#objetivos)
   - [Materiales](#Materiales)
+    - [Placa de Evaluación](#Placa-de-Evaluación)
+    - [Git i GitHub](#Git-i-GitHub)
   - [Aplicación final](#aplicación-final)
     - [Workflow implementado](#workflow-implementado)
+      - [feature/chronoamperomety](#feature/chronoamperomety)
+      - [feature/cyclic_voltammetry](#feature/cyclic-voltammetry)
   - [Resultados obtenidos](#Resultados-obtenidos)
     - [Voltametría cíclica](#voltametría_cíclica)
     - [Cronoamperometría](#cronoamperometría)
   - [Conclusiones](#conclusiones)
     - [Proyecto](#proyecto)
     - [Asignatura](#asignatura)
+  - [Referencias](#Referencias)
 
 
 
@@ -33,18 +57,14 @@ El grupo que ha realizado éste proyecto se llama `ecologiques` y está formado 
 
 ### Potenciostato
 
-Un potenciostato es un dispositivo electrónico necesario para controlar una celda de tres electrodos para un experimento electroanalítico. El sistema funciona manteniendo el potencial del electrodo de trabajo a un nivel constante con respecto al potencial del electrodo de referencia mediante el ajuste de la corriente en un electrodo auxiliar. Esto significa que es el responsable de polarizar la celda electroquímica a una tensión VCELL y la tensión ICELL que circula por ella. Para establecer VCELL, se va a utilizar la DAC modelo MCP4725 con dirección I2C `1100000`, pues permite generar una tensión de salida de 0 a 4V [1]. En la Figura 1 se puede ver un esquema del circuito eléctrico de un potenciostato básico.
+Un potenciostato es un dispositivo electrónico necesario para controlar una celda de tres electrodos para un experimento electroanalítico. El sistema funciona manteniendo el potencial del electrodo de trabajo a un nivel constante con respecto al potencial del electrodo de referencia mediante el ajuste de la corriente en un electrodo auxiliar. Esto significa que es el responsable de polarizar la celda electroquímica a una tensión VCELL y la tensión ICELL que circula por ella. Para establecer VCELL, se va a utilizar la DAC modelo MCP4725 con dirección I2C `1100000`, pues permite generar una tensión de salida de 0 a 4V [1]. En la Figura 2 se puede ver un esquema del circuito eléctrico de un potenciostato básico.
 
 <p align="center">
 <a href="masb-pot-s-ecologiques/Docs/assets/imgs/circuit.png">
 <img src="masb-pot-s-ecologiques/Docs/assets/imgs/circuit.png" alt="circuits" />
 </a>
 </p>
-
-
-
-
-> Figura 1. Esquema básico de un potenciostato [2]
+> Figura 2. Esquema básico de un potenciostato [2].
 
 Estos dispositivos son muy usados en el mundo de la sensórica médica ya que tienen una sensibilidad muy grande.
 
@@ -52,9 +72,9 @@ El objetivo es que, una vez programado y a voluntad del usuario, se pueda utiliz
 
 Son precisamente la correcta realización de éstas dos medidas uno de los objetivos de éste proyecto.
 
-### Voltammetría cíclica
+### Voltametría cíclica
 
-Una voltammetría cíclica es una técnica electroquímica de gran importancia en la que se aplica un potencial de entrada cuyo valor se va modificando entre dos valores fijos (*Ei* y *Ef*) y se obtienen los valores de corriente correspondientes.
+Una voltametría cíclica es una técnica electroquímica de gran importancia en la que se aplica un potencial de entrada cuyo valor se va modificando entre dos valores fijos (*Ei* y *Ef*) y se obtienen los valores de corriente correspondientes.
 
 El barrido de potencial se realiza sobre el electrodo de trabajo y se hace de manera triangular. La pendiente de esta variación se corresponde con la velocidad de barrido. 
 
@@ -64,7 +84,7 @@ Esta técnica es de gran utilidad, especialmente en estudios de procesos *redox*
 - RE - Debe tener un potencial conocido que actúe como referencia para poder medir el potencial del WE.
 - AE - Pasa la corriente necesaria para equilibrar la corriente observada en el WE.
 
-En la Figura 2 un ejemplo de gráficos que se pueden extraer al realizar una voltametría cíclica se pueden ver.
+En la Figura 3 un ejemplo de gráficos que se pueden extraer al realizar una voltametría cíclica se pueden ver.
 
 <p align="center">
 <a href="masb-pot-s-ecologiques/Docs/assets/imgs/voltametria.png">
@@ -72,13 +92,11 @@ En la Figura 2 un ejemplo de gráficos que se pueden extraer al realizar una vol
 </a>
 </p>
 
-
-
-> Figura 2. a)  Forma de onda de entrada de voltametría cíclica voltage vs tiempo b) ejemplo de una gráfica de salida corrente vs voltage [3].
+> Figura 3. a)  Forma de onda de entrada de voltametría cíclica voltage vs tiempo b) ejemplo de una gráfica de salida corrente vs voltage [3].
 
 ### Cronoamperometría
 
-Una Cronoamperometría (CA) es una técnica electroquímica que transduce la actividad de las especies biológicas de una celda electroquímica en una señal de corriente que cuantifica la concentración del analito de interés. En esta técnica se aplica una señal escalón y se mide la corriente a través de la celda en función del tiempo. Una de las ventajas de esta técnica es que no requiere etiquetado de analito o biorreceptor. El experimento comienza manteniendo la celda a un potencial en el que no ocurre ningún proceso faradaico. Entonces, el potencial se eleva a un valor en el cual ocurre una reacción redox.
+Una Cronoamperometría (CA) es una técnica electroquímica que transduce la actividad de las especies biológicas de una celda electroquímica en una señal de corriente que cuantifica la concentración del analito de interés. En esta técnica se aplica una señal escalón y se mide la corriente a través de la celda en función del tiempo. Una de las ventajas de esta técnica es que no requiere etiquetado de analito o biorreceptor. El experimento comienza manteniendo la celda a un potencial en el que no ocurre ningún proceso faradaico. Entonces, el potencial se eleva a un valor en el cual ocurre una reacción redox. En la Figura 4 se puede observar un ejemplo de un gráfico Potencial vs Tiempo.
 
 
 
@@ -88,9 +106,7 @@ Una Cronoamperometría (CA) es una técnica electroquímica que transduce la act
 </a>
 </p>
 
-
-
-> Figura 3. a)  Forma de onda de entrada de voltametría cíclica voltage vs Tiempo b) ejemplo de una gráfica de salida corrente vs voltage [3].
+> Figura 4. a)  Forma de onda de entrada de voltametría cíclica voltage vs Tiempo b) ejemplo de una gráfica de salida corrente vs voltage [3].
 
 
 
@@ -112,7 +128,7 @@ Cómo se ha mencionado anteriormente, se va a usar:
 
 ### Placa de Evaluación
 
-STM32 Nucleo-F401RE de STMicroelectronics
+STM32 Nucleo-F401RE de STMicroelectronics, Figura 5.
 
 
 
@@ -122,9 +138,7 @@ STM32 Nucleo-F401RE de STMicroelectronics
 </a>
 </p>
 
-
-
-> Figura 4. a)  NUCLEO-F401RE de STMicroelectronics [4].
+> Figura 5. a)  NUCLEO-F401RE de STMicroelectronics [4].
 
 Se ha utilizador esta EVB pues ofrece muchas ventajas para agilizar y simplificar el proceso de creación del código. Esto es así pues integra en la propia EVB el *debugger* (circuito electrónico necesario para programar el microcontrolador) y expone todos los pines del microcontrolador de manera que facilita las conexiones con elementos externos durante la fase de prototipaje, cosa que se ha aprovechado durante este trabajo. Durante la realización del trabajo se ha consultado el [*datasheet* del microcontrolador](https://www.st.com/resource/en/datasheet/stm32f401re.pdf), el [manual de referencia de la familia del microcontrolador](https://www.st.com/resource/en/reference_manual/dm00096844.pdf) y el [manual de usuario de las librerías HAL (*Hardware Abstraction Layer*)](https://www.st.com/resource/en/user_manual/dm00105879.pdf). Este último se ha usado para buscar las librerías HAL para usarlas en el entorno del STM32Cube IDE, que ha sido el programa utilizado para programar.
 
@@ -144,17 +158,89 @@ GitHub, es una aplicación gratuita para la gestión de repositorios Git. Dispon
 
 Este proyecto se ha implementado mediante el uso de dos ramas individuales (siguiendo el formato feature/nombre-descriptivo-rama) que posteriormente se han agrupado en la rama develop. Una vez se han comprobado y arreglado errores, se han pasado los archivos a la rama master para la visualización del cliente.
 
-Las dos ramas creadas son `feature/chronoamperomety` y `feature/cyclic-voltammetry`. En la primera se ha hecho toda la gestión de la cronoamperometría mientras que en la segunda se ha implementado la voltammetría cíclica. 
+> Primeramente se intentó realizar cada implementación del código en ramas distintas para un posterior merge de todo en la rama develop, pero tuvimos diversos problemas con el merge cuando las ramas ya estaban todas creadas con las estructuras y código desarrollado.
+>
+> La manera más automática que tuvimos para solucionarlo, pues ya sabiamos que los códigos por separado funcionavan, fue la de crear sólo dos ramas para su posterior merge al develop.
+
+Las dos ramas creadas son `feature/chronoamperomety` y `feature/cyclic-voltammetry`. En la primera se ha hecho toda la gestión de la cronoamperometría mientras que en la segunda se ha implementado la voltammetría cíclica.
 
 La gestión del resto de componentes (DAC, ADC, comunicación serie, *Timers*, relé y PMU) se ha realizado directamente en cada una de estas dos ramas principales. 
 
 De esta manera, el workflow de la aplicación es el siguiente:
 
-   
+
+
+#### feature/chronoamperomety
+
+Primeramente se inicializó la rama `feature/chronoamperomety` y se crearon las estructuras, setup y loop en un archivo generado dentro de la carpeta components, `stm32main.c`. En la Figura 6, 7 y 8, los workflows de éste archivo pueden ser observados.
 
 
 
- 
+<p align="center">
+<a href="masb-pot-s-ecologiques/Docs/assets/imgs/general.jpeg">
+<img src="masb-pot-s-ecologiques/Docs/assets/imgs/general.jpeg" width=350 alt="general" />
+</a>
+</p>
+> Figura 6. Estructura general de archivo stm32main.c
+
+En las dos figuras siguientes, se detallan el funcionamiento de las funciones `setup()`y `loop()`.
+
+<p align="center">
+<a href="masb-pot-s-ecologiques/Docs/assets/imgs/setup.jpeg">
+<img src="masb-pot-s-ecologiques/Docs/assets/imgs/setup.jpeg" width=350 alt="setup" />
+</a>
+</p>
+> Figura 7. Estructura de función `setup()`.
+
+<p align="center">
+<a href="masb-pot-s-ecologiques/Docs/assets/imgs/loop.jpeg">
+<img src="masb-pot-s-ecologiques/Docs/assets/imgs/loop.jpeg" width=350 alt="loop" />
+</a>
+</p>
+> Figura 8. Estructura de función `loop()`.
+
+Una vez finalizado éste archivo, se ha creado un archivo `chronoamperometry.c` y su respectivo header `chronoamperometry.h`. En la siguiente Figura, Figura 9, se puede ver su implementació en un workflow.
+
+<p align="center">
+<a href="masb-pot-s-ecologiques/Docs/assets/imgs/crono.jpeg">
+<img src="masb-pot-s-ecologiques/Docs/assets/imgs/crono.jpeg" width=350 alt="Crono" />
+</a>
+</p>
+
+> Figura 9. Estructura general del archivo `chronoamperometry.c`
+
+
+
+Se puede ver que el archivo de `chronoamperometry.c` no tiene una estructura especialmente complicada, ésto cambia cuando analizamos la rama `feature/cyclic_voltammetry `  y sus respectivos archivos.
+
+
+
+#### feature/cyclic_voltammetry
+
+En el caso de ésta rama, sólo se han creado los archivos `cyclic_voltammetry.c` y `cyclic_voltammetry.h`. En el workflow a continuación en Figura 10 se puede ver la funcionalidad del código general y en la Figura 11 se puede ver el código más específico.
+
+> Se ha utlizado la función del Timer de la Cronoamperimetría para el contador `mesura_punt`.
+
+<p align="center">
+<a href="masb-pot-s-ecologiques/Docs/assets/imgs/general_volta.jpeg">
+<img src="masb-pot-s-ecologiques/Docs/assets/imgs/general_volta.jpeg" width=350 alt="General volta" />
+</a>
+</p>
+> Figura 10. Estructura general del archivo `cyclic_voltammetry.c`.
+
+
+
+<p align="center">
+<a href="masb-pot-s-ecologiques/Docs/assets/imgs/volta.png">
+<img src="masb-pot-s-ecologiques/Docs/assets/imgs/volta.png" width=350 alt="Volta" />
+</a>
+</p>
+
+> Figura 11. Estructura del archivo `cyclic_voltammetry.c`.
+
+
+
+Se puede ver que la dificultad ha crecido exponencialmente si comparamos los workflows de las dos ramas `feature`, ésto es debido a la complegidad inherente del cálculo de la voltametría.
 
 
 
