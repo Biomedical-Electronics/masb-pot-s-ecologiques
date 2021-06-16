@@ -2,9 +2,9 @@
 
 <img align="left" src="https://img.shields.io/badge/Proyecto-Potenciostato-yellow"><img align="left" src="https://img.shields.io/badge/Entorno de desarrollo-STM32CubeIDE-blue"><img align="left" src="https://img.shields.io/badge/Versión-v0.1.0-green"></br>
 
-Éste proyecto consiste en la programación de un potenciostato formado por un *front-end* previamente diseñado por Albert Álvarez, y un *back-end* basado en la *Evaluation Board* (EVB) NUCLEO-F401RE de STMicroelectronics. Ésta configuración se va a realizar para llevar a cabo pruebas electroquímicas. 
+Este proyecto consiste en la programación de un potenciostato formado por un *front-end* previamente diseñado por Albert Álvarez, y un *back-end* basado en la *Evaluation Board* (EVB) NUCLEO-F401RE de STMicroelectronics. Esta configuración se va a realizar para llevar a cabo pruebas electroquímicas. 
 
-El grupo que ha realizado éste proyecto se llama `ecologiques` y está formado por **Helena Riesco** y **Maria Penón**.
+El grupo que ha realizado este proyecto se llama `ecologiques` y está formado por **Helena Riesco** y **Maria Penón**.
 
 <p align="left">
 <a href="masb-pot-s-ecologiques/Docs/assets/imgs/MARIA-PENON-BOSOM.jpg">
@@ -38,7 +38,7 @@ El grupo que ha realizado éste proyecto se llama `ecologiques` y está formado 
   - [Objetivos](#objetivos)
   - [Materiales](#Materiales)
     - [Placa de Evaluación](#Placa-de-Evaluación)
-    - [Git i GitHub](#Git-i-GitHub)
+    - [Git y GitHub](#Git-y-GitHub)
   - [Aplicación final](#aplicación-final)
     - [Workflow implementado](#workflow-implementado)
       - [feature/chronoamperomety](#feature/chronoamperomety)
@@ -92,7 +92,7 @@ En la Figura 3 un ejemplo de gráficos que se pueden extraer al realizar una vol
 </a>
 </p>
 
-> Figura 3. a)  Forma de onda de entrada de voltametría cíclica voltage vs tiempo b) ejemplo de una gráfica de salida corrente vs voltage [3].
+> Figura 3. a)  Forma de onda de entrada de voltametría cíclica voltaje vs tiempo b) ejemplo de una gráfica de salida corrente vs voltaje [3].
 
 ### Cronoamperometría
 
@@ -106,7 +106,7 @@ Una Cronoamperometría (CA) es una técnica electroquímica que transduce la act
 </a>
 </p>
 
-> Figura 4. a)  Forma de onda de entrada de voltametría cíclica voltage vs Tiempo b) ejemplo de una gráfica de salida corrente vs voltage [3].
+> Figura 4. Forma de onda de entrada de cronoampetrometría vs Tiempo
 
 
 
@@ -124,7 +124,7 @@ Los objetivos de éste proyecto se pueden resumir en los siguientes cinco puntos
 
 ## Materiales
 
-Cómo se ha mencionado anteriormente, se va a usar:
+Como se ha mencionado anteriormente, se va a usar:
 
 ### Placa de Evaluación
 
@@ -144,7 +144,7 @@ Se ha utilizador esta EVB pues ofrece muchas ventajas para agilizar y simplifica
 
 
 
-### Git i GitHub
+### Git y GitHub
 
 Git es un programa de código abierto y gratuito que ofrece herramientas para desarrollar proyectos de cualquier tamaño y embergadura. Permite crear distintas lineas de trabajo independientes dentro del mismo proyecto para poder tener ramas de desarrollo, de test y operativas. Ha sido grácias a este programa que se ha podido trabajar en el desarrollo del proyecto en equipo, pues permite guardar versiones de las modificaciones realizar para poder recuperar versiones anteriores de un mismo documento [5].
 

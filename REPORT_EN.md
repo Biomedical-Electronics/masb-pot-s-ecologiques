@@ -32,24 +32,24 @@ The group that has developed this project is called `ecologiques` and is compose
 
 - [MASB-POT-S Project](#masb-pot-s-project)
   - [Introduction](#introduction)
-    - [Potenciostato](#Potenciostato)
-    - [Voltametría cíclica](#Voltametría-cíclica)
-    - [Cronoamperometría](#Cronoamperometría)
-  - [Objetivos](#objetivos)
-  - [Materiales](#Materiales)
-    - [Placa de Evaluación](#Placa-de-Evaluación)
-    - [Git i GitHub](#Git-i-GitHub)
-  - [Aplicación final](#aplicación-final)
-    - [Workflow implementado](#workflow-implementado)
+    - [Potenciostat](#Potenciostat)
+    - [Cyclic voltammetry](#cyclic-voltammetry)
+    - [Chronoamperometry](#Chronoamperometry)
+  - [Objetives](#objetives)
+  - [Materials](#Materials)
+    - [Evaluation board](#Evaluation-board)
+    - [Git and GitHub](#Git-and-GitHub)
+  - [Final application](#final-application)
+    - [Implemented workflow](#implemented-workflow)
       - [feature/chronoamperomety](#feature/chronoamperomety)
       - [feature/cyclic_voltammetry](#feature/cyclic-voltammetry)
-  - [Resultados obtenidos](#Resultados-obtenidos)
-    - [Voltametría cíclica](#voltametría_cíclica)
-    - [Cronoamperometría](#cronoamperometría)
-  - [Conclusiones](#conclusiones)
-    - [Proyecto](#proyecto)
-    - [Asignatura](#asignatura)
-  - [Referencias](#Referencias)
+  - [Obtained results](#Obtained-results)
+    - [Cyclic voltammetry](#cyclic-voltammetry)
+    - [Chronoamperometry](#chronoamperometry)
+  - [Conclusions](#conclusions)
+    - [Project](#project)
+    - [Subject](#subject)
+  - [References](#References)
 
 
 
@@ -74,19 +74,19 @@ It's the correct function of these two types of measures that is the main goal o
 
 
 
-### Voltametría cíclica
+### Cyclic voltammetry
 
-Una voltametría cíclica es una técnica electroquímica de gran importancia en la que se aplica un potencial de entrada cuyo valor se va modificando entre dos valores fijos (*Ei* y *Ef*) y se obtienen los valores de corriente correspondientes.
+A cyclic voltammetry is an electrochemical technique of great importance in which an input potential is inserted which value is modified between two fixed values  (*Ei* y *Ef*)  and the corresponding current values are obtained.
 
-El barrido de potencial se realiza sobre el electrodo de trabajo y se hace de manera triangular. La pendiente de esta variación se corresponde con la velocidad de barrido. 
+The potential sweep is performed in the working electrode in a triangular manner. The slop of this variation corresponds to the sweeping velocity. 
 
-Esta técnica es de gran utilidad, especialmente en estudios de procesos *redox*, propiedades electrocatalíticas, etc. Se utilizan tres electrodos diferentes, un *Working electrode (WE)*, *Reference electrode (RE)* y *Auxiliar electrode (AE)* o *Counter electrode (CE)*.
+This technique is of great utility, specially in studies of *redox* processes, electrocatalitic properties, etc. Three different electrodes are used, a *Working electrode (WE)*, *Reference electrode (RE)* and *Auxiliar electrode (AE)* or *Counter electrode (CE)*.
 
-- WE - Corresponde al electrodo que tiene contacto con el analito, aplica el potencial deseado de manera controlada.
-- RE - Debe tener un potencial conocido que actúe como referencia para poder medir el potencial del WE.
-- AE - Pasa la corriente necesaria para equilibrar la corriente observada en el WE.
+- WE - Corresponds to the electrode that has contact with the analyte, applies the desired voltage in a controlled manner.
+- RE - It should have a known potential which acts as a reference to be able to measure the WE potential.
+- AE - The necessary current passes through to equilibrate the observed current in the WE.
 
-En la Figura 3 un ejemplo de gráficos que se pueden extraer al realizar una voltametría cíclica se pueden ver.
+In figure 3, an example of the graphs obtained from a cyclic voltammetry can be seen.
 
 <p align="center">
 <a href="masb-pot-s-ecologiques/Docs/assets/imgs/voltametria.png">
@@ -94,11 +94,11 @@ En la Figura 3 un ejemplo de gráficos que se pueden extraer al realizar una vol
 </a>
 </p>
 
-> Figura 3. a)  Forma de onda de entrada de voltametría cíclica voltage vs tiempo b) ejemplo de una gráfica de salida corrente vs voltage [3].
+> Figure 3. a)  Waveform of the entry voltage to a cyclic voltammetry vs time b) example of a graph of the output current vs voltage [3].
 
-### Cronoamperometría
+### Chronoamperometry
 
-Una Cronoamperometría (CA) es una técnica electroquímica que transduce la actividad de las especies biológicas de una celda electroquímica en una señal de corriente que cuantifica la concentración del analito de interés. En esta técnica se aplica una señal escalón y se mide la corriente a través de la celda en función del tiempo. Una de las ventajas de esta técnica es que no requiere etiquetado de analito o biorreceptor. El experimento comienza manteniendo la celda a un potencial en el que no ocurre ningún proceso faradaico. Entonces, el potencial se eleva a un valor en el cual ocurre una reacción redox. En la Figura 4 se puede observar un ejemplo de un gráfico Potencial vs Tiempo.
+A chronoamperometry is an electrochemical technique which transduces the activity of the biological species in an electrochemical cell to a current signal which quantifies the concentration of the interest analyte. In this technique a step signal is applied and the current through the cell is measured as a function of time. One of the advantages of this technique is that it does not require the identification of the analyte or biorreceptor. The experiment starts by maintaining the cell to a potential in which there is no faradaic process going on. Then, the potential is elevated to a value in which a redox reaction takes place. In figure an example of a potential vs time graph can be seen.
 
 
 
@@ -108,29 +108,29 @@ Una Cronoamperometría (CA) es una técnica electroquímica que transduce la act
 </a>
 </p>
 
-> Figura 4. a)  Forma de onda de entrada de voltametría cíclica voltage vs Tiempo b) ejemplo de una gráfica de salida corrente vs voltage [3].
+> Figure 4. Input waveform to the chronoamperometry vs time
 
 
 
-## Objetivos
+## Objetives
 
-Los objetivos de éste proyecto se pueden resumir en los siguientes cinco puntos.
+The objectives of this project can be summarized in the following  points.
 
-- Programar un potenciostato portable.
-- Controlar la *Power Management Unit* (PMU) del módulo *front-end* del potenciostato.
-- Comunicarse con la aplicación viSens-S instalada con el *host* u ordenador mediante el protocolo MASB-COMM-S.
-- Realizar una voltammetría cíclica.
-- Realizar una cronoamperometría.
+- Program a portable potentiostat.
+- Control the *Power Management Unit* (PMU) of the *front-end* module of the potentiostat.
+- Communicate with the viSens-S installed application with the *host* or computer by the MASB-COMM-S protocol.
+- Perform a cyclic voltammetry.
+- Perform a chronoamperometry.
 
 
 
-## Materiales
+## Materials
 
-Cómo se ha mencionado anteriormente, se va a usar:
+As it has been commented before, the materials that are going to be used are:
 
-### Placa de Evaluación
+### Evaluation board
 
-STM32 Nucleo-F401RE de STMicroelectronics, Figura 5.
+STM32 Nucleo-F401RE of STMicroelectronics, Figure 5.
 
 
 
@@ -140,13 +140,13 @@ STM32 Nucleo-F401RE de STMicroelectronics, Figura 5.
 </a>
 </p>
 
-> Figura 5. a)  NUCLEO-F401RE de STMicroelectronics [4].
+> Figure 5.  NUCLEO-F401RE of STMicroelectronics [4].
 
-Se ha utilizador esta EVB pues ofrece muchas ventajas para agilizar y simplificar el proceso de creación del código. Esto es así pues integra en la propia EVB el *debugger* (circuito electrónico necesario para programar el microcontrolador) y expone todos los pines del microcontrolador de manera que facilita las conexiones con elementos externos durante la fase de prototipaje, cosa que se ha aprovechado durante este trabajo. Durante la realización del trabajo se ha consultado el [*datasheet* del microcontrolador](https://www.st.com/resource/en/datasheet/stm32f401re.pdf), el [manual de referencia de la familia del microcontrolador](https://www.st.com/resource/en/reference_manual/dm00096844.pdf) y el [manual de usuario de las librerías HAL (*Hardware Abstraction Layer*)](https://www.st.com/resource/en/user_manual/dm00105879.pdf). Este último se ha usado para buscar las librerías HAL para usarlas en el entorno del STM32Cube IDE, que ha sido el programa utilizado para programar.
+This EVB has been used as it offers a lot of advantages to improve and simplify the code creating process. This is like this as it integrates in the EVB itself the *debugger* (electronic circuitry necessary to program the microcontroller) and exposes all the microcontroller pins in a way which facilitates the connections with the external elements during the prototyping phase, which has been taken advantage of during this project. During the creation of the work  [the microcontroller *datasheet*](https://www.st.com/resource/en/datasheet/stm32f401re.pdf), the [microcontroller family reference manual](https://www.st.com/resource/en/reference_manual/dm00096844.pdf) and the [HAL library user manual (*Hardware Abstraction Layer*)](https://www.st.com/resource/en/user_manual/dm00105879.pdf) have been consulted . This last document has been used to search the HAL libraries to used them in the STM32Cube IDE environment, which has been the program used to code.
 
 
 
-### Git i GitHub
+### Git and GitHub
 
 Git es un programa de código abierto y gratuito que ofrece herramientas para desarrollar proyectos de cualquier tamaño y embergadura. Permite crear distintas lineas de trabajo independientes dentro del mismo proyecto para poder tener ramas de desarrollo, de test y operativas. Ha sido grácias a este programa que se ha podido trabajar en el desarrollo del proyecto en equipo, pues permite guardar versiones de las modificaciones realizar para poder recuperar versiones anteriores de un mismo documento [5].
 
@@ -154,9 +154,9 @@ GitHub, es una aplicación gratuita para la gestión de repositorios Git. Dispon
 
 
 
-## Aplicación final
+## Final application
 
-### Workflow implementado
+### Implemented workflow
 
 Este proyecto se ha implementado mediante el uso de dos ramas individuales (siguiendo el formato feature/nombre-descriptivo-rama) que posteriormente se han agrupado en la rama develop. Una vez se han comprobado y arreglado errores, se han pasado los archivos a la rama master para la visualización del cliente.
 
@@ -250,7 +250,7 @@ Se puede ver que la dificultad ha crecido exponencialmente si comparamos los wor
 
 
 
-## Resultados obtenidos
+## Obtained results
 
 Para poder comprobar la funcionalidad del programa desarrollado sin tener la muestra y la DAC, se ha usado el programa viSense (con un videotutorial en este [link](https://www.youtube.com/watch?v=UkXToFs8g6Y)), con el que se realiza la
 configuración del tipo de medida a realizar, la comunicación con la placa del microcontrolador y la visualización de los resultados obtenidos.
@@ -261,33 +261,33 @@ Los resultados han sido correctos, los datos se han enviado, la señal recibida 
 
 Los resultados de la parte experimental se pueden ver a continuación.
 
-### Voltametría cíclica
+### Cyclic voltammetry
 
 
 
-### Cronoamperometría
+### Chronoamperometry
 
 
 
 
 
-## Conclusiones
+## Conclusions
 
-### Proyecto
+### Project
 
 Este proyecto nos ha servido para utilizar los los distintos conocimientos
 que hemos ido adquiriendo y desarrollar un código para una aplicación médica. Hemos podido aplicar los conocimientos adquiridos de cómo configurar una placa, lectura de pines, tipos de comunicación, uso de timers y su configuración, relaciones entre funciones, y mucho más. Sobretodo hemos adquirido más conocimiento sobre el uso de Git y GitHub para desarrollar programas en equipo de forma cómoda y útil, lo cual será extremadamente útil en nuestro futuro laboral. Para finalizar, nos ha dado las herramientas para saber interpretar _datasheets_ y saber encontrar la información necesaria para poder adaptarnos en distintas situaciones.
 
 
 
-### Asignatura
+### Subject
 
 Esta asignatura nos ha proporcionado las bases para, no sólo desarrollar nuestros propios proyectos de equipos médicos con microcontroladores, sino que nos ha enseñado maneras de poder trabajar en un solo proyecto en equipo.
 Pese a que el conocimiento que hemos logrado adquirir sólo son las bases de la programación de microprocesadores, nos ha abierto las puertas en un ámbito que ahora está en auge.
 
 
 
-## Referencias
+## References
 
 [1] Potentiostat - an overview | ScienceDirect Topics. (2021). Retrieved 21 May 2021, from https://www.sciencedirect.com/topics/engineering/potentiostat.
 
