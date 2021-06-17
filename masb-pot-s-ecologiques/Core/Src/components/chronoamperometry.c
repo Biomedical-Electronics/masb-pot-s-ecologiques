@@ -108,6 +108,7 @@ void Mesurant_Crono(struct CA_Configuration_S caConfiguration) { //definicion de
 
 	}
 
+	HAL_GPIO_WritePin(RELAY_GPIO_Port, RELAY_Pin, 0);
 	HAL_TIM_Base_Stop_IT(&htim3); // paramos el timer
 
 
