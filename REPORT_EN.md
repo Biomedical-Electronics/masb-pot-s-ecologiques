@@ -2,7 +2,7 @@
 
 <img align="left" src="https://img.shields.io/badge/Proyecto-Potenciostato-yellow"><img align="left" src="https://img.shields.io/badge/Entorno de desarrollo-STM32CubeIDE-blue"><img align="left" src="https://img.shields.io/badge/Versión-v0.1.0-green"></br>
 
-This project consists on the programming of a potentiostat formed by a _front-end_ previously designed by Albert Álvarez, and a _back-end_ based on the *Evaluation Board* (EVB) NUCLEO-F401RE of STMicroelectronics. This configuration is going to be used for electrichemical testing,
+This project consists on the programming of a potentiostat formed by a _front-end_ previously designed by Albert Álvarez, and a _back-end_ based on the *Evaluation Board* (EVB) NUCLEO-F401RE of STMicroelectronics. This configuration is going to be used for electrochemical testing,
 
 The group that has developed this project is called `ecologiques` and is composed by **Maria Penon** and **Helena Riesco**.
 
@@ -26,7 +26,7 @@ The group that has developed this project is called `ecologiques` and is compose
 
 
 
-> Figure 1. Maria Penon and Helena Riesco
+> Figure 1. Maria Penon and Helena Riesco.
 
 ## Index<!-- omit in toc -->
 
@@ -44,8 +44,8 @@ The group that has developed this project is called `ecologiques` and is compose
       - [feature/chronoamperomety](#feature/chronoamperomety)
       - [feature/cyclic_voltammetry](#feature/cyclic-voltammetry)
   - [Obtained results](#Obtained-results)
-    - [Cyclic voltammetry](#cyclic-voltammetry)
     - [Chronoamperometry](#chronoamperometry)
+    - [Cyclic voltammetry](#cyclic-voltammetry)
   - [Conclusions](#conclusions)
     - [Project](#project)
     - [Subject](#subject)
@@ -57,18 +57,19 @@ The group that has developed this project is called `ecologiques` and is compose
 
 ### Potenciostat
 
-A potentiostat is a necessary electronic devise to control a three electrode cell for an electroanalytic experiment. The system works by mantaining the working electrode potential at a constant level respect to the reference electrode potential using adjustments of the current in the auxiliar electrode. This means that it is the responsable for polarizing the cell at a voltage VCELL and a current ICELL that goes through it. To establish VCELL, a DAC model MCP4725 with I2C direction `1100000` is going to be used since it allows the generation of an output voltage between 0 to 4V [1]. In Figure 2 a basic electrical circuit of a potentiostat can be seen.
+A potentiostat is a necessary electronic devise to control a three electrode cell for an electro analytic experiment. The system works by maintaining the working electrode potential at a constant level respect to the reference electrode potential using adjustments of the current in the auxiliary electrode. This means that it is the responsible for polarizing the cell at a voltage VCELL and a current ICELL that goes through it. To establish VCELL, a DAC model MCP4725 with I2C direction `1100000` is going to be used since it allows the generation of an output voltage between 0 to 4V [1]. In Figure 2 a basic electrical circuit of a potentiostat can be seen.
 
 <p align="center">
-<a href="masb-pot-s-ecologiques/Docs/assets/imgs/circuit.png">
-<img src="masb-pot-s-ecologiques/Docs/assets/imgs/circuit.png" alt="circuits" />
+<a href="masb-pot-s-ecologiques/Docs/assets/imgs/circuit.jpeg">
+<img src="masb-pot-s-ecologiques/Docs/assets/imgs/circuit.jpeg" alt="circuits" width=450 />
 </a>
 </p>
+
 > Figure 2. Basic electrical circuit of a potentiostat [2].
 
 This type of devices are often used in the field of medical sensors since they have high sensitivity.
 
-The main goal of such device is that, once it has been programmed and at the will of a user, it can be used to make two electrochemical readings_ the **cyclic voltammetry** and a **chronoamperometry**
+The main goal of such device is that, once it has been programmed and at the will of a user, it can be used to make two electrochemical readings: the **cyclic voltammetry** and a **chronoamperometry**
 
 It's the correct function of these two types of measures that is the main goal of this project.
 
@@ -80,7 +81,7 @@ A cyclic voltammetry is an electrochemical technique of great importance in whic
 
 The potential sweep is performed in the working electrode in a triangular manner. The slop of this variation corresponds to the sweeping velocity. 
 
-This technique is of great utility, specially in studies of *redox* processes, electrocatalitic properties, etc. Three different electrodes are used, a *Working electrode (WE)*, *Reference electrode (RE)* and *Auxiliar electrode (AE)* or *Counter electrode (CE)*.
+This technique is of great utility, specially in studies of *redox* processes, electrocatalitic properties, etc. Three different electrodes are used, a *Working electrode (WE)*, *Reference electrode (RE)* and *Auxiliary electrode (AE)* or *Counter electrode (CE)*.
 
 - WE - Corresponds to the electrode that has contact with the analyte, applies the desired voltage in a controlled manner.
 - RE - It should have a known potential which acts as a reference to be able to measure the WE potential.
@@ -90,9 +91,10 @@ In figure 3, an example of the graphs obtained from a cyclic voltammetry can be 
 
 <p align="center">
 <a href="masb-pot-s-ecologiques/Docs/assets/imgs/voltametria.png">
-<img src="masb-pot-s-ecologiques/Docs/assets/imgs/voltametria.png" alt="voltametria" />
+<img src="masb-pot-s-ecologiques/Docs/assets/imgs/voltametria.png" alt="voltametria" width=550/>
 </a>
 </p>
+
 
 > Figure 3. a)  Waveform of the entry voltage to a cyclic voltammetry vs time b) example of a graph of the output current vs voltage [3].
 
@@ -142,7 +144,7 @@ STM32 Nucleo-F401RE of STMicroelectronics, Figure 5.
 
 > Figure 5.  NUCLEO-F401RE of STMicroelectronics [4].
 
-This EVB has been used as it offers a lot of advantages to improve and simplify the code creating process. This is like this as it integrates in the EVB itself the *debugger* (electronic circuitry necessary to program the microcontroller) and exposes all the microcontroller pins in a way which facilitates the connections with the external elements during the prototyping phase, which has been taken advantage of during this project. During the creation of the work  [the microcontroller *datasheet*](https://www.st.com/resource/en/datasheet/stm32f401re.pdf), the [microcontroller family reference manual](https://www.st.com/resource/en/reference_manual/dm00096844.pdf) and the [HAL library user manual (*Hardware Abstraction Layer*)](https://www.st.com/resource/en/user_manual/dm00105879.pdf) have been consulted . This last document has been used to search the HAL libraries to used them in the STM32Cube IDE environment, which has been the program used to code.
+This EVB has been used as it offers a lot of advantages to improve and simplify the code creating process. This is like this as it integrates in the EVB itself the *debugger* (electronic circuitry necessary to program the micro controller) and exposes all the micro controller pins in a way which facilitates the connections with the external elements during the prototyping phase, which has been taken advantage of during this project. During the creation of the work  [the microcontroller *datasheet*](https://www.st.com/resource/en/datasheet/stm32f401re.pdf), the [microcontroller family reference manual](https://www.st.com/resource/en/reference_manual/dm00096844.pdf) and the [HAL library user manual (*Hardware Abstraction Layer*)](https://www.st.com/resource/en/user_manual/dm00105879.pdf) have been consulted . This last document has been used to search the HAL libraries to used them in the STM32Cube IDE environment, which has been the program used to code.
 
 
 
@@ -180,9 +182,10 @@ Firstly, the branch `feature/chronoamperomety` was initialized and the structure
 
 <p align="center">
 <a href="masb-pot-s-ecologiques/Docs/assets/imgs/general_en.jpeg">
-<img src="masb-pot-s-ecologiques/Docs/assets/imgs/general_en.jpeg" width=350 alt="general" />
+<img src="masb-pot-s-ecologiques/Docs/assets/imgs/general_en.jpeg" width=250 alt="general" />
 </a>
 </p>
+
 
 > Figure 6. General structure of the file stm32main.c
 
@@ -190,17 +193,19 @@ In the two following figures, the functioning of the functions `setup()`and `loo
 
 <p align="center">
 <a href="masb-pot-s-ecologiques/Docs/assets/imgs/setup_en.jpeg">
-<img src="masb-pot-s-ecologiques/Docs/assets/imgs/setup_en.jpeg" width=350 alt="setup" />
+<img src="masb-pot-s-ecologiques/Docs/assets/imgs/setup_en.jpeg" width=250 alt="setup" />
 </a>
 </p>
+
 
 > Figure 7. Structure of the function `setup()`.
 
 <p align="center">
 <a href="masb-pot-s-ecologiques/Docs/assets/imgs/loop_en.jpeg">
-<img src="masb-pot-s-ecologiques/Docs/assets/imgs/loop_en.jpeg" width=350 alt="loop" />
+<img src="masb-pot-s-ecologiques/Docs/assets/imgs/loop_en.jpeg" width=450 alt="loop" />
 </a>
 </p>
+
 
 > Figure 8. Structure of the `loop()` function.
 
@@ -208,10 +213,9 @@ Once finished this file, the file  `chronoamperometry.c` has been created and al
 
 <p align="center">
 <a href="masb-pot-s-ecologiques/Docs/assets/imgs/crono_en.jpeg">
-<img src="masb-pot-s-ecologiques/Docs/assets/imgs/crono_en.jpeg" width=350 alt="Crono" />
+<img src="masb-pot-s-ecologiques/Docs/assets/imgs/crono_en.jpeg" width=200 alt="Crono" />
 </a>
 </p>
-
 
 > Figure 9. General structure of the file `chronoamperometry.c`
 
@@ -223,50 +227,88 @@ It can be seen that the file `chronoamperometry.c` does not have a specially com
 
 #### feature/cyclic_voltammetry
 
-In the case of this branch, only the files `cyclic_voltammetry.c` and `cyclic_voltammetry.h` have been created. In the following workflow, figure 10, it can be seen the general code functionality and in figure 11 the more specific code can be seen.
+In the case of this branch, only the files `cyclic_voltammetry.c` and `cyclic_voltammetry.h` have been created. In the following workflow, figure 10, it can be seen the general code functionality and in Figure 11 the more specific code can be seen.
 
 > The timer function of the chronoamperometry has been used for the `mesura_punt` counter.
 
 <p align="center">
 <a href="masb-pot-s-ecologiques/Docs/assets/imgs/general_volta.jpeg">
-<img src="masb-pot-s-ecologiques/Docs/assets/imgs/general_volta.jpeg" width=350 alt="General volta" />
+<img src="masb-pot-s-ecologiques/Docs/assets/imgs/general_volta.jpeg" width=250 alt="General volta" />
 </a>
 </p>
+
 > Figure 10. General structure of the file `cyclic_voltammetry.c`.
 
 
 
 <p align="center">
 <a href="masb-pot-s-ecologiques/Docs/assets/imgs/volta.png">
-<img src="masb-pot-s-ecologiques/Docs/assets/imgs/volta.png" width=350 alt="Volta" />
+<img src="masb-pot-s-ecologiques/Docs/assets/imgs/volta.png" width=400 alt="Volta" />
 </a>
 </p>
+
 
 > Figure 11. Structure of the file `cyclic_voltammetry.c`.
 
 
 
-It can be seen that the dificulty has increased exponentially if we compare the workflows of the two `feature` branches, this is due to the complexity inherent to the voltammetry calculation.
+It can be seen that the difficulty has increased exponentially if we compare the work flows of the two `feature` branches, this is due to the complexity inherent to the voltammetry calculation.
 
 
 
 ## Obtained results
 
-To be able to test the functionality of the developed program without having the sample and the DAC, the program viSense has been used (with a videotutorial in this [link](https://www.youtube.com/watch?v=UkXToFs8g6Y)), with which the measurement to perform can be configured and also the communication with the microcontroller board can be done as well as the visualization of the results obtained.
+To be able to test the functionality of the developed program without having the sample and the DAC, the program viSense has been used (with a video tutorial in this [link](https://www.youtube.com/watch?v=UkXToFs8g6Y)), with which the measurement to perform can be configured and also the communication with the micro controller board can be done as well as the visualization of the results obtained.
 
-To solve the problem of not having the dissolution, a potentiometer has been connected in the form of a tension divisor connected to the analog input, simulating in this way a signal was simulated. After this, once the correct functioning has been made sure, the test in the laboratory has been done.
-
-The results have been correct, the data has been sent, the received signal with the correct timers and an acceptable sensibility have been obtained. Both the chronoamperometry and the cyclic voltammetry have been carried out correctly.
-
-Following, the experimental results can be seen.
-
-### Cyclic voltammetry
+To solve the problem of not having the dissolution, a potentiometer has been connected in the form of a tension divisor connected to the analog input, simulating in this way a signal was simulated. 
 
 
+
+<p align="center">
+<a href="masb-pot-s-ecologiques/Docs/assets/imgs/crono_prova.png">
+<img src="masb-pot-s-ecologiques/Docs/assets/imgs/crono_prova.png" width=450 alt="Crono" />
+</a>
+</p>
+
+> Figure 12. Obtained results with the chronoamperometry before the experimental test.
+
+<p align="center">
+<a href="masb-pot-s-ecologiques/Docs/assets/imgs/volta_prova.png">
+<img src="masb-pot-s-ecologiques/Docs/assets/imgs/volta_prova.png" width=450 alt="Volta" />
+</a>
+</p>
+
+> Figure 13.  Obtained results with the cyclic voltammetry before the experimental test.
+
+The results have been correct, the data has been sent, the received signal with the correct timers and an acceptable sensibility have been obtained. Both the chronoamperometry and the cyclic voltammetry have been carried out correctly. Therefore, a test in the laboratory has been made. The sensor, Figure 14, has been validated with [Potassium ferricyanide](https://en.wikipedia.org/wiki/Potassium_ferricyanide) at different concentrations (1mM and 5mM) with a [buffer](https://en.wikipedia.org/wiki/Buffer_solution) of [Potassium chloride](https://en.wikipedia.org/wiki/Potassium_chloride). It can be appreciated how the electronics designed by Dr. Álvarez is connected to the STM32 Nucleo-F401RE de STMicroelectronics, and with a test trip to add the potassium ferricyanide in the bottom part of the device.
+
+
+
+<p align="center">
+<a href="masb-pot-s-ecologiques/Docs/assets/imgs/sensor.jpeg">
+<img src="masb-pot-s-ecologiques/Docs/assets/imgs/sensor.jpeg" width=350 alt="sensor" />
+</a>
+</p>
+
+> Figure 14. Electronics used.
 
 ### Chronoamperometry
 
+The obtained results with the experimental measurement of the chronoamperometry can be seen in the graphs below.
 
+
+
+> Figure 15. Chronoamperimetry obtained with the measurement of  potassium ferricyanide at different concentrations.
+
+
+
+### Cyclic voltammetry
+
+Finally, the obtained results with the experimental measurement of the cyclic voltammetry can be seen in the graphs below.
+
+
+
+> Figure 16. Cyclic voltammetry obtained with the measurement of  potassium ferricyanide at different concentrations.
 
 
 
@@ -274,16 +316,15 @@ Following, the experimental results can be seen.
 
 ### Project
 
-This project has served as a way of using the different concepts acquired and to develop a code for a medical application. We have been able to apply the concepts learnt about how to configure a board. Hemos podido aplicar los conocimientos adquiridos de cómo configurar una placa, lectura de pines, tipos de comunicación, uso de timers y su configuración, relaciones entre funciones, y mucho más. Sobretodo hemos adquirido más conocimiento sobre el uso de Git y GitHub para desarrollar programas en equipo de forma cómoda y útil, lo cual será extremadamente útil en nuestro futuro laboral. Para finalizar, nos ha dado las herramientas para saber interpretar _datasheets_ y saber encontrar la información necesaria para poder adaptarnos en distintas situaciones.
+This project has served as a way of using the different concepts acquired and to develop a code for a medical application. We have been able to apply the concepts learnt about how to configure a board, how to properly read PINs, types of communications, use of timers and their configuration, relationship between functions, and much more. Above all, we have acquired further knowledge about the use of Git and Github to develop programs in teams, which will be extremely useful in our future. Finally, it has given us tools to interpret data sheets and know how to find the needed information to adapt in different situations. 
 
 
 
 ### Subject
 
-Esta asignatura nos ha proporcionado las bases para, no sólo desarrollar nuestros propios proyectos de equipos médicos con microcontroladores, sino que nos ha enseñado maneras de poder trabajar en un solo proyecto en equipo.
-Pese a que el conocimiento que hemos logrado adquirir sólo son las bases de la programación de microprocesadores, nos ha abierto las puertas en un ámbito que ahora está en auge.
+This subject has allowed us the bases to, not only develop our own projects for medical purposes using micro controllers, but it has also taught us new ways to work on the same project simultaneously in teams.
 
-
+Even though the knowledge obtained is only the bases of micro processing programming, it has allowed us to open a door in a booming field.
 
 ## References
 
