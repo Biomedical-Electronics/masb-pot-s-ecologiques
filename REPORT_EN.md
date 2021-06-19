@@ -148,9 +148,9 @@ This EVB has been used as it offers a lot of advantages to improve and simplify 
 
 ### Git and GitHub
 
-Git es un programa de código abierto y gratuito que ofrece herramientas para desarrollar proyectos de cualquier tamaño y embergadura. Permite crear distintas lineas de trabajo independientes dentro del mismo proyecto para poder tener ramas de desarrollo, de test y operativas. Ha sido grácias a este programa que se ha podido trabajar en el desarrollo del proyecto en equipo, pues permite guardar versiones de las modificaciones realizar para poder recuperar versiones anteriores de un mismo documento [5].
+Git is an open code program and free which offers tools to develop project of whatever size. It allows for the creation of independent working lines within the same project in order to have development branches, test branches and operative branches. Thanks to this program it has been possible to work in the development in the project as a team, as it allows saving versions of the modifications performed in order to be able to restore previous versions of the same document [5].
 
-GitHub, es una aplicación gratuita para la gestión de repositorios Git. Dispone de una interfaz web para tener acceso y control de las distintas colaboraciones y desarrollos del proyecto, incluyendo la opción de jerarquización de equipos, donde es necesaria la comprobación y aceptación por un project manager de las modificaciones realizadas por un desarrollador antes que se pueda unir el nuevo código, al programa principal. De este modo, se puede controlar y ir añadiendo sólo el contenido que se ha comprovado que funciona [6].
+GitHub, is a free app for the management of Git repositories. It has a web interface in order to have access and control to the different collaborations and developments of the project, including the hierarchy of teams, where the approval of the modifications performed by a developer from a project manager is necessary before the new code can be merged into the main program. In this way, only the content that has been made sure that it works can be added and controlled [6].
 
 
 
@@ -158,23 +158,23 @@ GitHub, es una aplicación gratuita para la gestión de repositorios Git. Dispon
 
 ### Implemented workflow
 
-Este proyecto se ha implementado mediante el uso de dos ramas individuales (siguiendo el formato feature/nombre-descriptivo-rama) que posteriormente se han agrupado en la rama develop. Una vez se han comprobado y arreglado errores, se han pasado los archivos a la rama master para la visualización del cliente.
+This project has been implemented via the use of two individual branches (following the format feature/descriptive-name-branch) which have then been added to the develop branch. Once it has been run and the errors have been fixed, the files have been passed to the master branch for the client's visualization.
 
-> Primeramente se intentó realizar cada implementación del código en ramas distintas para un posterior merge de todo en la rama develop, pero tuvimos diversos problemas con el merge cuando las ramas ya estaban todas creadas con las estructuras y código desarrollado.
+> Firstly, performing the implementation in different branches for its later incorporation into the develop branch was tried, however, different problems with the merge were encountered when all the structures and code had already been developed.
 >
-> La manera más automática que tuvimos para solucionarlo, pues ya sabiamos que los códigos por separado funcionavan, fue la de crear sólo dos ramas para su posterior merge al develop.
+> The most automatic way to solve it, as we already new the different codes worked, was to create only two branches for the merge with develop.
 
-Las dos ramas creadas son `feature/chronoamperomety` y `feature/cyclic-voltammetry`. En la primera se ha hecho toda la gestión de la cronoamperometría mientras que en la segunda se ha implementado la voltammetría cíclica.
+The two branches created are `feature/chronoamperometry` and `feature/cyclic-voltammetry`. In the first one, all the management of the chronoamperometry has been done while in the second the cyclic voltammetry has been implemented.
 
-La gestión del resto de componentes (DAC, ADC, comunicación serie, *Timers*, relé y PMU) se ha realizado directamente en cada una de estas dos ramas principales. 
+The management of the rest of the components (DAC, ADC, comunicación serie, *Timers*, relay and PMU) have been performed directly in each of these two main branches. 
 
-De esta manera, el workflow de la aplicación es el siguiente:
+In this way, the workflow of the app is the following:
 
 
 
 #### feature/chronoamperomety
 
-Primeramente se inicializó la rama `feature/chronoamperomety` y se crearon las estructuras, setup y loop en un archivo generado dentro de la carpeta components, `stm32main.c`. En la Figura 6, 7 y 8, los workflows de éste archivo pueden ser observados.
+Firstly, the branch `feature/chronoamperomety` was initialized and the structures setup and loop were created in a file inside the components directory, `stm32main.c`. In Figures 6, 7 and 8, the workflows of this file can be observed.
 
 
 
@@ -184,9 +184,9 @@ Primeramente se inicializó la rama `feature/chronoamperomety` y se crearon las 
 </a>
 </p>
 
-> Figura 6. Estructura general de archivo stm32main.c
+> Figure 6. General structure of the file stm32main.c
 
-En las dos figuras siguientes, se detallan el funcionamiento de las funciones `setup()`y `loop()`.
+In the two following figures, the functioning of the functions `setup()`and `loop()` are detailed.
 
 <p align="center">
 <a href="masb-pot-s-ecologiques/Docs/assets/imgs/setup_en.jpeg">
@@ -194,7 +194,7 @@ En las dos figuras siguientes, se detallan el funcionamiento de las funciones `s
 </a>
 </p>
 
-> Figura 7. Estructura de función `setup()`.
+> Figure 7. Structure of the function `setup()`.
 
 <p align="center">
 <a href="masb-pot-s-ecologiques/Docs/assets/imgs/loop_en.jpeg">
@@ -202,9 +202,9 @@ En las dos figuras siguientes, se detallan el funcionamiento de las funciones `s
 </a>
 </p>
 
-> Figura 8. Estructura de función `loop()`.
+> Figure 8. Structure of the `loop()` function.
 
-Una vez finalizado éste archivo, se ha creado un archivo `chronoamperometry.c` y su respectivo header `chronoamperometry.h`. En la siguiente Figura, Figura 9, se puede ver su implementació en un workflow.
+Once finished this file, the file  `chronoamperometry.c` has been created and also its respective header `chronoamperometry.h`. In the following figure, Figure 9, its implementation can be seen in a workflow.
 
 <p align="center">
 <a href="masb-pot-s-ecologiques/Docs/assets/imgs/crono_en.jpeg">
@@ -213,26 +213,26 @@ Una vez finalizado éste archivo, se ha creado un archivo `chronoamperometry.c` 
 </p>
 
 
-> Figura 9. Estructura general del archivo `chronoamperometry.c`
+> Figure 9. General structure of the file `chronoamperometry.c`
 
 
 
-Se puede ver que el archivo de `chronoamperometry.c` no tiene una estructura especialmente complicada, ésto cambia cuando analizamos la rama `feature/cyclic_voltammetry `  y sus respectivos archivos.
+It can be seen that the file `chronoamperometry.c` does not have a specially complex structure, this changes when we analyze the branch `feature/cyclic_voltammetry `  and the corresponding files.
 
 
 
 #### feature/cyclic_voltammetry
 
-En el caso de ésta rama, sólo se han creado los archivos `cyclic_voltammetry.c` y `cyclic_voltammetry.h`. En el workflow a continuación en Figura 10 se puede ver la funcionalidad del código general y en la Figura 11 se puede ver el código más específico.
+In the case of this branch, only the files `cyclic_voltammetry.c` and `cyclic_voltammetry.h` have been created. In the following workflow, figure 10, it can be seen the general code functionality and in figure 11 the more specific code can be seen.
 
-> Se ha utlizado la función del Timer de la Cronoamperimetría para el contador `mesura_punt`.
+> The timer function of the chronoamperometry has been used for the `mesura_punt` counter.
 
 <p align="center">
 <a href="masb-pot-s-ecologiques/Docs/assets/imgs/general_volta.jpeg">
 <img src="masb-pot-s-ecologiques/Docs/assets/imgs/general_volta.jpeg" width=350 alt="General volta" />
 </a>
 </p>
-> Figura 10. Estructura general del archivo `cyclic_voltammetry.c`.
+> Figure 10. General structure of the file `cyclic_voltammetry.c`.
 
 
 
@@ -242,24 +242,23 @@ En el caso de ésta rama, sólo se han creado los archivos `cyclic_voltammetry.c
 </a>
 </p>
 
-> Figura 11. Estructura del archivo `cyclic_voltammetry.c`.
+> Figure 11. Structure of the file `cyclic_voltammetry.c`.
 
 
 
-Se puede ver que la dificultad ha crecido exponencialmente si comparamos los workflows de las dos ramas `feature`, ésto es debido a la complegidad inherente del cálculo de la voltametría.
+It can be seen that the dificulty has increased exponentially if we compare the workflows of the two `feature` branches, this is due to the complexity inherent to the voltammetry calculation.
 
 
 
 ## Obtained results
 
-Para poder comprobar la funcionalidad del programa desarrollado sin tener la muestra y la DAC, se ha usado el programa viSense (con un videotutorial en este [link](https://www.youtube.com/watch?v=UkXToFs8g6Y)), con el que se realiza la
-configuración del tipo de medida a realizar, la comunicación con la placa del microcontrolador y la visualización de los resultados obtenidos.
+To be able to test the functionality of the developed program without having the sample and the DAC, the program viSense has been used (with a videotutorial in this [link](https://www.youtube.com/watch?v=UkXToFs8g6Y)), with which the measurement to perform can be configured and also the communication with the microcontroller board can be done as well as the visualization of the results obtained.
 
-Para poder solventar el no disponer de la disolución, se ha conectado un potenciómetro en forma de divisor de tensión en la entrada analógica, simulando así una señal. Posteriormente, una vez se ha comprobado el correcto funcionamiento, se ha realizado la prueba en el laboratorio.
+To solve the problem of not having the dissolution, a potentiometer has been connected in the form of a tension divisor connected to the analog input, simulating in this way a signal was simulated. After this, once the correct functioning has been made sure, the test in the laboratory has been done.
 
-Los resultados han sido correctos, los datos se han enviado, la señal recibida con los _timers_ correctos y la sensibilidad aceptable durante las pruebas prévias al testeado con la muestra biológica. Tanto la cronoamperimetria cómo la voltametría cíclica, han funcinoado correctamente.
+The results have been correct, the data has been sent, the received signal with the correct timers and an acceptable sensibility have been obtained. Both the chronoamperometry and the cyclic voltammetry have been carried out correctly.
 
-Los resultados de la parte experimental se pueden ver a continuación.
+Following, the experimental results can be seen.
 
 ### Cyclic voltammetry
 
@@ -275,8 +274,7 @@ Los resultados de la parte experimental se pueden ver a continuación.
 
 ### Project
 
-Este proyecto nos ha servido para utilizar los los distintos conocimientos
-que hemos ido adquiriendo y desarrollar un código para una aplicación médica. Hemos podido aplicar los conocimientos adquiridos de cómo configurar una placa, lectura de pines, tipos de comunicación, uso de timers y su configuración, relaciones entre funciones, y mucho más. Sobretodo hemos adquirido más conocimiento sobre el uso de Git y GitHub para desarrollar programas en equipo de forma cómoda y útil, lo cual será extremadamente útil en nuestro futuro laboral. Para finalizar, nos ha dado las herramientas para saber interpretar _datasheets_ y saber encontrar la información necesaria para poder adaptarnos en distintas situaciones.
+This project has served as a way of using the different concepts acquired and to develop a code for a medical application. We have been able to apply the concepts learnt about how to configure a board. Hemos podido aplicar los conocimientos adquiridos de cómo configurar una placa, lectura de pines, tipos de comunicación, uso de timers y su configuración, relaciones entre funciones, y mucho más. Sobretodo hemos adquirido más conocimiento sobre el uso de Git y GitHub para desarrollar programas en equipo de forma cómoda y útil, lo cual será extremadamente útil en nuestro futuro laboral. Para finalizar, nos ha dado las herramientas para saber interpretar _datasheets_ y saber encontrar la información necesaria para poder adaptarnos en distintas situaciones.
 
 
 
