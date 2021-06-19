@@ -296,9 +296,13 @@ The results have been correct, the data has been sent, the received signal with 
 
 The obtained results with the experimental measurement of the chronoamperometry can be seen in the graphs below.
 
+<p align="center">
+<a href="masb-pot-s-ecologiques/Docs/assets/imgs/cronoampero.png">
+<img src="masb-pot-s-ecologiques/Docs/assets/imgs/cronoampero.png" width=500 alt="Chronoamperometry experimental" />
+</a>
+</p>
 
-
-> Figure 15. Chronoamperimetry obtained with the measurement of  potassium ferricyanide at different concentrations.
+> Figure 15. Chronoamperometry obtained with the measurement of  potassium ferricyanide at different concentrations.
 
 
 
@@ -306,7 +310,11 @@ The obtained results with the experimental measurement of the chronoamperometry 
 
 Finally, the obtained results with the experimental measurement of the cyclic voltammetry can be seen in the graphs below.
 
-
+<p align="center">
+<a href="masb-pot-s-ecologiques/Docs/assets/imgs/volta_experimental.png">
+<img src="masb-pot-s-ecologiques/Docs/assets/imgs/volta_experimental.png" width=500 alt="Voltammetry experimental" />
+</a>
+</p>
 
 > Figure 16. Cyclic voltammetry obtained with the measurement of  potassium ferricyanide at different concentrations.
 

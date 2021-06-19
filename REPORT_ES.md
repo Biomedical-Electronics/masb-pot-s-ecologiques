@@ -290,7 +290,11 @@ Los resultados han sido correctos, los datos se han enviado, la señal recibida 
 
 Los resultados obtenidos con la medición experimental de la cronoamperimetría se pueden ver en los gráficos a continuación.
 
-
+<p align="center">
+<a href="masb-pot-s-ecologiques/Docs/assets/imgs/cronoampero.png">
+<img src="masb-pot-s-ecologiques/Docs/assets/imgs/cronoampero.png" width=500 alt="Chronoamperometry experimental" />
+</a>
+</p>
 
 > Figura 15. Cronoamperimetría obtenida con la medición de ferricianuro de potasio a diferentes concentraciones
 
@@ -298,7 +302,11 @@ Los resultados obtenidos con la medición experimental de la cronoamperimetría 
 
 Finalmente, los resultados obtenidos con la medición experimental de la voltametría se pueden ver en los gráficos a continuación.
 
-
+<p align="center">
+<a href="masb-pot-s-ecologiques/Docs/assets/imgs/volta_experimental.png">
+<img src="masb-pot-s-ecologiques/Docs/assets/imgs/volta_experimental.png" width=500 alt="Voltammetry experimental" />
+</a>
+</p>
 
 > Figura 16. Cronoamperimetría obtenida con la medición de ferricianuro de potasio a diferentes concentraciones
 
