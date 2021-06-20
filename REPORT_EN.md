@@ -26,15 +26,12 @@ The group that has developed this project is called `ecologiques` and is compose
 
 
 
+
 > Figure 1. Maria Penon and Helena Riesco.
 
 
 
-
-
-
-
-## Index<!-- omit in toc -->
+## Index
 
 - [MASB-POT-S Project](#masb-pot-s-project)
   - [Introduction](#introduction)
@@ -111,10 +108,11 @@ A chronoamperometry is an electrochemical technique which transduces the activit
 
 
 <p align="center">
-<a href="masb-pot-s-ecologiques/Docs/assets/imgs/crono.png">
-<img src="masb-pot-s-ecologiques/Docs/assets/imgs/crono.png" alt="crono" />
+<a href="masb-pot-s-ecologiques/Docs/assets/imgs/cron.jpeg">
+<img src="masb-pot-s-ecologiques/Docs/assets/imgs/cron.jpeg" alt="crono" />
 </a>
 </p>
+
 
 > Figure 4. Input waveform to the chronoamperometry vs time
 

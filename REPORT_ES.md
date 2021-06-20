@@ -107,10 +107,11 @@ Una Cronoamperometría (CA) es una técnica electroquímica que transduce la act
 
 
 <p align="center">
-<a href="masb-pot-s-ecologiques/Docs/assets/imgs/crono.png">
-<img src="masb-pot-s-ecologiques/Docs/assets/imgs/crono.png" alt="crono" />
+<a href="masb-pot-s-ecologiques/Docs/assets/imgs/cron.jpeg">
+<img src="masb-pot-s-ecologiques/Docs/assets/imgs/cron.jpeg" alt="crono" />
 </a>
 </p>
+
 
 > Figura 4. Forma de onda de entrada de cronoampetrometría vs Tiempo.
 
