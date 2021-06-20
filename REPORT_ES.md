@@ -6,7 +6,7 @@ Este proyecto consiste en la programación de un potenciostato formado por un *f
 
 El grupo que ha realizado este proyecto se llama `ecologiques` y está formado por **Helena Riesco** y **Maria Penón**.
 
-<p align="left">
+<p align="centre">
 <a href="masb-pot-s-ecologiques/Docs/assets/imgs/MARIA-PENON-BOSOM.jpg">
 <a href="masb-pot-s-ecologiques/Docs/assets/imgs/HELENA-RIESCO-DOMINGO.jpg">
 <img src="masb-pot-s-ecologiques/Docs/assets/imgs/MARIA-PENON-BOSOM.jpg" width=250 align= left alt="Maria" />
@@ -26,9 +26,8 @@ El grupo que ha realizado este proyecto se llama `ecologiques` y está formado p
 
 
 
+
 > Figura 1. Maria Penon i Helena Riesco.
-
-
 
 
 
