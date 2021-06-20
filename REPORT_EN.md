@@ -28,6 +28,12 @@ The group that has developed this project is called `ecologiques` and is compose
 
 > Figure 1. Maria Penon and Helena Riesco.
 
+
+
+
+
+
+
 ## Index<!-- omit in toc -->
 
 - [MASB-POT-S Project](#masb-pot-s-project)

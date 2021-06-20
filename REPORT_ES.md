@@ -28,6 +28,10 @@ El grupo que ha realizado este proyecto se llama `ecologiques` y está formado p
 
 > Figura 1. Maria Penon i Helena Riesco.
 
+
+
+
+
 ## Contenidos <!-- omit in toc -->
 
 - [Proyecto MASB-POT-S](#proyecto-masb-pot-s)
