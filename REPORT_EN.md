@@ -6,26 +6,17 @@ This project consists on the programming of a potentiostat formed by a _front-en
 
 The group that has developed this project is called `ecologiques` and is composed by **Maria Penon** and **Helena Riesco**.
 
-<p align="left">
-<a href="masb-pot-s-ecologiques/Docs/assets/imgs/MARIA-PENON-BOSOM.jpg">
+<p align="center">
 <a href="masb-pot-s-ecologiques/Docs/assets/imgs/HELENA-RIESCO-DOMINGO.jpg">
-<img src="masb-pot-s-ecologiques/Docs/assets/imgs/MARIA-PENON-BOSOM.jpg" width=250 align= left alt="Maria" />
-<img src="masb-pot-s-ecologiques/Docs/assets/imgs/HELENA-RIESCO-DOMINGO.jpg" width=250 align= right alt="Helena" />
+<img src="masb-pot-s-ecologiques/Docs/assets/imgs/HELENA-RIESCO-DOMINGO.jpg" width=250 alt="Helena" />
 </a>
 </p>
 
-
-
-
-
-
-
-
-
-
-
-
-
+<p align="center">
+<a href="masb-pot-s-ecologiques/Docs/assets/imgs/MARIA-PENON-BOSOM.jpg">
+<img src="masb-pot-s-ecologiques/Docs/assets/imgs/MARIA-PENON-BOSOM.jpg" width=250 alt="Maria" />
+</a>
+</p>
 
 > Figure 1. Maria Penon and Helena Riesco.
 
